@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="581ee74d-4c6c-44fd-b614-95b4990ce11d" name="Changes" comment="" />
+    <list default="true" id="581ee74d-4c6c-44fd-b614-95b4990ce11d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20221204110649.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20221204112105.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20221204112145.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20221204112708.php" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -162,7 +169,9 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/gauthierboddaert/Desktop/Projet/backendCookAPI",
+    "last_opened_file_path": "C:/Users/33781/Desktop/backendCook",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.keymap",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -181,6 +190,8 @@
       <option name="presentableId" value="Default" />
       <updated>1670151187879</updated>
       <workItem from="1670151188995" duration="2819000" />
+      <workItem from="1670240132118" duration="127000" />
+      <workItem from="1670240280382" duration="399000" />
     </task>
     <servers />
   </component>
