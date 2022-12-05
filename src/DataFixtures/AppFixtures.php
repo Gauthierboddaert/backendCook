@@ -46,11 +46,11 @@ class AppFixtures extends Fixture
     {
         $user->setEmail('boddaert.gauthier@gmail.com');
         $user->setPassword($this->userPasswordHasher->hashPassword($user, "coucou"));
-        $user->setRoles(['user']);
+        $user->setRoles(['ROLE_ADMIN']);
 
         $admin->setEmail('gboddaert@insitaction.com');
         $admin->setPassword($this->userPasswordHasher->hashPassword($admin, "coucou"));
-        $admin->setRoles(['admin']);
+        $admin->setRoles(['ROLE_ADMIN']);
 
         $manager->persist($user);
         $manager->persist($admin);
