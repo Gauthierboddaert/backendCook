@@ -28,7 +28,7 @@ class AppFixtures extends Fixture
             $recette = new Recette();
             $category = new Category();
 
-            $category->setName('Végétarien'.$i);
+            $category->setName('VEGETARIEN');
             $manager->persist($category);
 
             $recette->setDescriptions('description here'.$i);
