@@ -6,8 +6,11 @@
 parameters:
 
 services:
+
     # default configuration for services in *this* file
     _defaults:
+        bind:
+            $image_directory: '%kernel.project_dir%/public/uploads'
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
@@ -19,6 +22,7 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+
 
     App\EventListener\UserResolveListener:
         arguments:

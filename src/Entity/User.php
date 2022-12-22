@@ -37,9 +37,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'users', targetEntity: Recette::class)]
     private Collection $recettes;
 
+    #[ORM\Column(length: 255)]
+    private ?string $name = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $lastname = null;
+
+    #[ORM\ManyToMany(targetEntity: Favoris::class, mappedBy: 'user')]
+    private Collection $favoris;
+
+    #[ORM\ManyToMany(targetEntity: Like::class, mappedBy: 'user')]
+    private Collection $likes;
+
     public function __construct()
     {
         $this->recettes = new ArrayCollection();
+        $this->favoris = new ArrayCollection();
+        $this->likes = new ArrayCollection();
+    }
+
+    public function __toString(): string
+    {
+        return $this->getLastname() .' '. $this->getName();
     }
 
     public function getId(): ?int
@@ -137,6 +156,84 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             if ($recette->getUsers() === $this) {
                 $recette->setUsers(null);
             }
+        }
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(string $lastname): self
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Favoris>
+     */
+    public function getFavoris(): Collection
+    {
+        return $this->favoris;
+    }
+
+    public function addFavori(Favoris $favori): self
+    {
+        if (!$this->favoris->contains($favori)) {
+            $this->favoris->add($favori);
+            $favori->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavori(Favoris $favori): self
+    {
+        if ($this->favoris->removeElement($favori)) {
+            $favori->removeUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Like>
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(Like $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes->add($like);
+            $like->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(Like $like): self
+    {
+        if ($this->likes->removeElement($like)) {
+            $like->removeUser($this);
         }
 
         return $this;
