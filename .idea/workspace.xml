@@ -2,10 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="581ee74d-4c6c-44fd-b614-95b4990ce11d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Service/RecetteManager.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/bg-noel.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/rsa.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/ImageManager.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/api/RecetteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/api/RecetteController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Recette.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Recette.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/RecetteRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/RecetteRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/recette/index.html.twig" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,18 +187,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/33781/Desktop/backendCook",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/33781/Desktop/backendCook/public/uploads&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\33781\Desktop\backendCook\public\uploads" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\33781\Desktop\backendCook\src\DataFixtures" />
       <recent name="C:\Users\33781\Desktop\backendCook\config\jwt" />
@@ -214,6 +226,13 @@
       <workItem from="1670240280382" duration="5523000" />
       <workItem from="1670246307624" duration="153000" />
       <workItem from="1670257397972" duration="8042000" />
+      <workItem from="1670494803214" duration="63000" />
+      <workItem from="1671640840712" duration="2550000" />
+      <workItem from="1671655229492" duration="3403000" />
+      <workItem from="1671661356376" duration="1945000" />
+      <workItem from="1671695494733" duration="1656000" />
+      <workItem from="1671702409542" duration="3809000" />
+      <workItem from="1671716823595" duration="985000" />
     </task>
     <servers />
   </component>

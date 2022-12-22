@@ -1,0 +1,83 @@
+<?php
+
+namespace App\Entity;
+
+use App\Repository\LikeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity(repositoryClass: LikeRepository::class)]
+#[ORM\Table(name: '`like`')]
+class Like
+{
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
+
+    #[ORM\ManyToMany(targetEntity: recette::class, inversedBy: 'likes')]
+    private Collection $recette;
+
+    #[ORM\ManyToMany(targetEntity: user::class, inversedBy: 'likes')]
+    private Collection $user;
+
+    public function __construct()
+    {
+        $this->recette = new ArrayCollection();
+        $this->user = new ArrayCollection();
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return Collection<int, recette>
+     */
+    public function getRecette(): Collection
+    {
+        return $this->recette;
+    }
+
+    public function addRecette(recette $recette): self
+    {
+        if (!$this->recette->contains($recette)) {
+            $this->recette->add($recette);
+        }
+
+        return $this;
+    }
+
+    public function removeRecette(recette $recette): self
+    {
+        $this->recette->removeElement($recette);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, user>
+     */
+    public function getUser(): Collection
+    {
+        return $this->user;
+    }
+
+    public function addUser(user $user): self
+    {
+        if (!$this->user->contains($user)) {
+            $this->user->add($user);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(user $user): self
+    {
+        $this->user->removeElement($user);
+
+        return $this;
+    }
+}

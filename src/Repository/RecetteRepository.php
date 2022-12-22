@@ -39,28 +39,19 @@ class RecetteRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Recette[] Returns an array of Recette objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('r')
-//            ->andWhere('r.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('r.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findThreeLastRecette() :  ?array
+    {
+        return $this->createQueryBuilder('recette')
+                    ->orderBy('recette.id', 'DESC')
+                    ->setMaxResults(3)
+                    ->getQuery()
+                    ->getResult();
+    }
 
-//    public function findOneBySomeField($value): ?Recette
-//    {
-//        return $this->createQueryBuilder('r')
-//            ->andWhere('r.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findFavoriesByUser() : ?array
+    {
+        return $this->createQueryBuilder('recette')
+                    ->getQuery()
+                    ->getResult();
+    }
 }

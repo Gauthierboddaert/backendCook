@@ -27,10 +27,6 @@ class Recette
     #[Groups(['getRecette'])]
     private ?string $descriptions = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    #[Groups(['getRecette'])]
-    private ?string $image = null;
-
     #[ORM\ManyToOne(inversedBy: 'recettes')]
     #[Groups(['getRecette'])]
     private ?user $users = null;
@@ -39,11 +35,23 @@ class Recette
     #[Groups(['getRecette'])]
     private Collection $category;
 
+    #[ORM\OneToMany(mappedBy: 'recette', targetEntity: Image::class, cascade: ['persist'], orphanRemoval: true)]
+    private Collection $images;
+
+    #[ORM\ManyToMany(targetEntity: Favoris::class, mappedBy: 'recette')]
+    private Collection $favoris;
+
+    #[ORM\ManyToMany(targetEntity: Like::class, mappedBy: 'recette')]
+    private Collection $likes;
+
 
     public function __construct()
     {
         $this->categories = new ArrayCollection();
         $this->category = new ArrayCollection();
+        $this->images = new ArrayCollection();
+        $this->favoris = new ArrayCollection();
+        $this->likes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -71,18 +79,6 @@ class Recette
     public function setDescriptions(string $descriptions): self
     {
         $this->descriptions = $descriptions;
-
-        return $this;
-    }
-
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(?string $image): self
-    {
-        $this->image = $image;
 
         return $this;
     }
@@ -119,6 +115,91 @@ class Recette
     public function removeCategory(category $category): self
     {
         $this->category->removeElement($category);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Image>
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images->add($image);
+            $image->setRecette($this);
+        }
+
+        return $this;
+    }
+
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getRecette() === $this) {
+                $image->setRecette(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Favoris>
+     */
+    public function getFavoris(): Collection
+    {
+        return $this->favoris;
+    }
+
+    public function addFavori(Favoris $favori): self
+    {
+        if (!$this->favoris->contains($favori)) {
+            $this->favoris->add($favori);
+            $favori->addRecette($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavori(Favoris $favori): self
+    {
+        if ($this->favoris->removeElement($favori)) {
+            $favori->removeRecette($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Like>
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(Like $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes->add($like);
+            $like->addRecette($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(Like $like): self
+    {
+        if ($this->likes->removeElement($like)) {
+            $like->removeRecette($this);
+        }
 
         return $this;
     }
