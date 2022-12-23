@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use App\Entity\User;
 use App\Entity\Category;
 use Symfony\Component\Serializer\Annotation\Groups;
+use App\Entity\Image;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -35,15 +36,19 @@ class Recette
     #[Groups(['getRecette'])]
     private Collection $category;
 
-    #[ORM\OneToMany(mappedBy: 'recette', targetEntity: Image::class, cascade: ['persist'], orphanRemoval: true)]
-    private Collection $images;
-
     #[ORM\ManyToMany(targetEntity: Favoris::class, mappedBy: 'recette')]
     private Collection $favoris;
 
     #[ORM\ManyToMany(targetEntity: Like::class, mappedBy: 'recette')]
     private Collection $likes;
 
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?image $image = null;
+
+    public function __toString(): string
+    {
+        return ($this->getName() !== null) ? $this->getName() : '';
+    }
 
     public function __construct()
     {
@@ -120,37 +125,6 @@ class Recette
     }
 
     /**
-     * @return Collection<int, Image>
-     */
-    public function getImages(): Collection
-    {
-        return $this->images;
-    }
-
-    public function addImage(Image $image): self
-    {
-        if (!$this->images->contains($image)) {
-            $this->images->add($image);
-            $image->setRecette($this);
-        }
-
-        return $this;
-    }
-
-
-    public function removeImage(Image $image): self
-    {
-        if ($this->images->removeElement($image)) {
-            // set the owning side to null (unless already changed)
-            if ($image->getRecette() === $this) {
-                $image->setRecette(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, Favoris>
      */
     public function getFavoris(): Collection
@@ -200,6 +174,18 @@ class Recette
         if ($this->likes->removeElement($like)) {
             $like->removeRecette($this);
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?image
+    {
+        return $this->image;
+    }
+
+    public function setImage(?image $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

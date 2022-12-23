@@ -35,13 +35,12 @@ class AppFixtures extends Fixture
             $manager->persist($category);
 
             $image->setName('rsa.png');
-            $image->setRecette($recette);
             $manager->persist($image);
 
             $recette->setDescriptions('description here'.$i);
             $recette->setName('Name here'.$i);
             $recette->setUsers($user);
-            $recette->addImage($image);
+            $recette->setImage($image);
             $recette->addCategory($category);
 
             $manager->persist($recette);

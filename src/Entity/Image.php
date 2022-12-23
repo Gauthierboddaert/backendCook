@@ -16,8 +16,10 @@ class Image
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToOne(inversedBy: 'images')]
-    private ?recette $recette = null;
+    public function __toString(): string
+    {
+        return $this->getName();
+    }
 
     public function getId(): ?int
     {
@@ -32,18 +34,6 @@ class Image
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getRecette(): ?recette
-    {
-        return $this->recette;
-    }
-
-    public function setRecette(?recette $recette): self
-    {
-        $this->recette = $recette;
 
         return $this;
     }
