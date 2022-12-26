@@ -6,6 +6,7 @@ use App\Entity\Recette;
 use App\Form\RecetteType;
 use App\Form\SearchType;
 use App\Repository\RecetteRepository;
+use App\Repository\RepositoryInterface;
 use App\Service\ImageInterface;
 use App\Service\RecetteInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,55 +15,59 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/home')]
-class HomePageController extends AbstractController
+#[Route('/')]
+class HomePageController extends BaseController
 {
     private RecetteRepository $recetteRepository;
+    private RepositoryInterface $repositoryInterface;
     private ImageInterface $imageInterface;
     private string $image_directory;
-    private recetteInterface $recetteInterface;
 
-    public function __construct(
-        RecetteRepository $recetteRepository,
-        ImageInterface $imageInterface,
-        recetteInterface $recetteInterface,
-        string $image_directory
-    )
+    public function __construct(RecetteRepository $recetteRepository, ImageInterface $imageInterface,RepositoryInterface $repositoryInterface, string $image_directory)
     {
+        parent::__construct($recetteRepository, $imageInterface, $image_directory);
         $this->recetteRepository = $recetteRepository;
         $this->imageInterface = $imageInterface;
-        $this->recetteInterface = $recetteInterface;
         $this->image_directory = $image_directory;
+        $this->repositoryInterface = $repositoryInterface;
     }
 
-    #[Route('/', name: 'app_home_page_index', methods: ['GET', 'POST'])]
+    #[Route('/home', name: 'app_home_page_index', methods: ['GET', 'POST'])]
     public function index(Request $request): Response
     {
-        $recette = new Recette();
-        $form = $this->createForm(SearchType::class, $recette);
-        $search = $this->recetteInterface->createFormRecette($request, $form, 'app_homepage_search');
+        $response = $this->searchRecette($request, 'app_homepage_search');
 
-        if($search instanceof RedirectResponse){
-            return $this->redirectToRoute('app_homepage_search', [
-                'name' => 'cc'
-            ]);
+        if($response instanceof RedirectResponse)
+        {
+            return $response;
         }
 
         return $this->renderForm('home_page/index.html.twig', [
             'recettes' => $this->recetteRepository->findThreeLastRecette(),
-            'form' => $search
+            'form' => $response
         ]);
     }
 
     #[Route('/search', name: 'app_homepage_search', methods: ['GET', 'POST'])]
-    public function searchRecette(Request $request): Response
+    public function search(Request $request): Response
     {
-        return $this->renderForm('Search/index.html.twig', [
+        $name = $request->get('name');
+        $response = $this->searchRecette($request, 'app_homepage_search');
 
+        if($response instanceof RedirectResponse)
+        {
+            return $response;
+        }
+
+        return $this->renderForm('Search/index.html.twig', [
+            'recettes' => $this->recetteRepository->filterByRecette($name),
+            'name' => $name,
+            'form' => $response
         ]);
     }
 
-    #[Route('/new', name: 'app_home_page_new', methods: ['GET', 'POST'])]
+
+    #[Route('/recette/new', name: 'app_home_page_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
         $recette = new Recette();
@@ -77,21 +82,21 @@ class HomePageController extends AbstractController
             return $this->redirectToRoute('app_home_page_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('home_page/new.html.twig', [
+        return $this->renderForm('recette/new.html.twig', [
             'recette' => $recette,
             'form' => $form
         ]);
     }
 
-    #[Route('/{id}', name: 'app_home_page_show', methods: ['GET'])]
+    #[Route('/recette/{id}', name: 'app_home_page_show', methods: ['GET'])]
     public function show(Recette $recette): Response
     {
-        return $this->render('home_page/show.html.twig', [
+        return $this->render('recette/show.html.twig', [
             'recette' => $recette,
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_home_page_edit', methods: ['GET', 'POST'])]
+    #[Route('/recette/{id}/edit', name: 'app_home_page_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Recette $recette): Response
     {
         $form = $this->createForm(RecetteType::class, $recette);
@@ -105,13 +110,13 @@ class HomePageController extends AbstractController
             return $this->redirectToRoute('app_home_page_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('home_page/edit.html.twig', [
+        return $this->renderForm('recette/edit.html.twig', [
             'recette' => $recette,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_home_page_delete', methods: ['POST'])]
+    #[Route('/recette/{id}', name: 'app_home_page_delete', methods: ['POST'])]
     public function delete(Request $request, Recette $recette): Response
     {
         if ($this->isCsrfTokenValid('delete'.$recette->getId(), $request->request->get('_token'))) {
@@ -119,5 +124,14 @@ class HomePageController extends AbstractController
         }
 
         return $this->redirectToRoute('app_home_page_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+
+    #[Route('/recette', name: 'app_homepage_recette', methods: ['GET'])]
+    public function findAllRecette(): Response
+    {
+        return $this->renderForm('recette/index.html.twig', [
+            'recettes' => $this->repositoryInterface->findTenLastObject()
+        ]);
     }
 }

@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recette index{% endblock %}
+
+{% block body %}
+    <h2 class ="LastRecette"><i class="fa-solid fa-book"></i> Les dernières recettes ! </h2>
+    {% for recette in recettes %}
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6 cardPerso">
+                    <div class="card">
+                        <img  src="{{ asset('/uploads/' ~ recette.image)  }}" class="card-img-top imgprops" alt="Your Photo">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ recette.name }}</h5>
+                            <p class="card-text">{{ recette.descriptions }}</p>
+                            <p class="card-text"><small class="text-muted">#hashtag1 #hashtag2</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+
+    <style>
+        body{
+            background: url({{ asset('/uploads/pastel.jpeg')  }}) center / cover no-repeat;
+        }
+
+        .cardPerso{
+            background: white;
+            padding: 20px;
+            border: solid 0.5px black;
+            border-radius: 10px;
+        }
+
+        .imgprops{
+            min-width: 100%;
+            max-width: 100%;
+            max-height: 400px;
+            min-height: 400px;
+        }
+
+        .LastRecette {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 40px;
+            margin-top: 20px;
+            font-weight: bold;
+            font-family: 'Red Hat Text', sans-serif;
+        }
+    </style>
+{% endblock %}
+
+

@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\RouterInterface;
 
-class RecetteManager implements RecetteInterface
+class RecetteManager
 {
 
     private RouterInterface $router;
@@ -28,25 +28,5 @@ class RecetteManager implements RecetteInterface
         $recette->addCategory($category);
     }
 
-    public function createFormRecette(Request $request, FormInterface $form, string $redirect) : mixed
-    {
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $url = $this->router->generate('app_homepage_search',[
-                'recetteName' => 'test'
-            ]);
-
-            return new RedirectResponse($url);
-        }
-
-
-        return $form;
-    }
-
-    public function search()
-    {
-        // TODO: Implement search() method.
-    }
 }

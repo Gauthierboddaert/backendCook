@@ -2,27 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="581ee74d-4c6c-44fd-b614-95b4990ce11d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/backendCookAPI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/backendCookAPI.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/symfony2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/symfony2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20221205114017.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20221205120102.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20221221171140.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20221221171547.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20221221212900.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20221222135205.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20221222135335.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/63a38a5b35d79.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/HomePageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomePageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Image.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Image.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Recette.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Recette.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/ImageManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/ImageManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/RecetteRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/RecetteRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/RecetteInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/RecetteInterface.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Service/RecetteManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/RecetteManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Search/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Search/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home_page/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/recette/_delete_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home_page/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home_page/_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home_page/_formSearch.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/recette/_formSearch.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home_page/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/recette/edit.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/home_page/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home_page/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home_page/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/recette/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home_page/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/recette/show.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,7 +198,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/gauthierboddaert/Desktop/Projet/backendCook/templates/home_page",
+    "last_opened_file_path": "/Users/gauthierboddaert/Desktop/Projet/backendCook/src/Form",
     "nodejs_package_manager_path": "npm",
     "php.override.implement.member.chooser.php.doc": "NONE",
     "settings.editor.selected.configurable": "preferences.pluginManager",
@@ -213,11 +207,13 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/templates/home_page" />
       <recent name="$PROJECT_DIR$/src/Form" />
+      <recent name="$PROJECT_DIR$/public/uploads" />
+      <recent name="$PROJECT_DIR$/templates/home_page" />
       <recent name="C:\Users\33781\Desktop\backendCook\public\uploads" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates/recette" />
       <recent name="C:\Users\33781\Desktop\backendCook\src\DataFixtures" />
       <recent name="C:\Users\33781\Desktop\backendCook\config\jwt" />
     </key>
@@ -248,7 +244,11 @@
       <workItem from="1671695494733" duration="1656000" />
       <workItem from="1671702409542" duration="3809000" />
       <workItem from="1671716823595" duration="985000" />
-      <workItem from="1671822364408" duration="14354000" />
+      <workItem from="1671822364408" duration="15478000" />
+      <workItem from="1671887486414" duration="15028000" />
+      <workItem from="1671911694073" duration="168000" />
+      <workItem from="1671965635227" duration="5091000" />
+      <workItem from="1671999886109" duration="3179000" />
     </task>
     <servers />
   </component>
@@ -265,6 +265,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/src/Controller/BaseController.php</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

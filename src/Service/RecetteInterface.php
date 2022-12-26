@@ -8,6 +8,5 @@ use Symfony\Component\HttpFoundation\Request;
 
 interface RecetteInterface
 {
-    public function createFormRecette(Request $request, FormInterface $form,  string $redirect) : mixed;
-    public function search();
+    public function searchRecette(Request $request,string $redirect) : mixed;
 }

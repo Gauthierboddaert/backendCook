@@ -20,6 +20,164 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block base %}
+
+            <section class="header">
+                <div class="headerLeftPart">
+                    <a href="{{ path('app_home_page_index') }}"><h1>CookingFriends</h1></a>
+                </div>
+                <div class="headerRightPart">
+                    <nav>
+                        <li>
+                            <button class="btnNav" type="button">
+                            <i class="fa-solid fa-plus"></i>
+                            {% if app.user %}
+                                <a href={{ path('app_home_page_new') }}>Ajouter une recette</a>
+                            {% else %}
+                                <a href={{ path('app_login') }}>Ajouter une recette</a>
+                            {% endif %}
+                            </button>
+                        </li>
+                        <li>
+                            <button class="btnNav" type="button">
+                                <i class="fa-solid fa-book"></i>
+                                <a href={{ path('app_homepage_recette') }}>Voir toutes les recettes</a>
+                            </button>
+                        </li>
+                        {% if app.user == null %}
+                            <li>
+                                <button class="btnNav" type="button">
+                                    <i  class="fa-solid fa-user"></i>
+                                    <a href={{ path('app_login') }}>Se connecter</a>
+                                </button>
+                            </li>
+                        {% else %}
+                            <li>
+                                <button class="btnNav" type="button">
+                                    <i  class="fa-solid fa-user"></i>
+                                    <a href={{ path('app_user_favories') }}>{{ app.user }}</a>
+                                </button>
+                            </li>
+                        {%  endif %}
+                    </nav>
+                </div>
+            </section>
+            <div style="height: 5vh;width: 100%;background-color: white">
+
+            </div>
+        {% endblock %}
+        {% block body %}
+
+        {% endblock %}
     </body>
 </html>
+
+<style>
+
+    .LastRecette {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 40px;
+
+        font-weight: bold;
+        font-family: 'Red Hat Text', sans-serif;
+    }
+
+    a{
+        text-decoration: none;
+    }
+    a h1{
+        color: #ff4269;
+        text-decoration: none;
+    }
+
+    .LastRecette i {
+        color: #ff4269;
+        margin: 2px;
+    }
+    .btnNav{
+        background-color: white;
+        text-decoration: none;
+        border: none;
+        display: flex;
+        align-items:center;
+        flex-direction: column;
+        padding: 0 10px;
+        border-right:2px solid #f4f3f4 ;
+    }
+
+    .btnNav i{
+        color: #ff4269;
+        margin: 2px;
+    }
+
+    .btnNav a{
+        text-decoration: none;
+        color: black;
+        font-size: 12px;
+        font-weight: bold;
+        font-family: 'Red Hat Text', sans-serif;
+    }
+
+    .btnNav p{
+        text-decoration: none;
+        color: black;
+        font-size: 12px;
+        font-weight: bold;
+        font-family: 'Red Hat Text', sans-serif;
+    }
+
+
+    .header{
+        width: 100%;
+        padding: 10px 0;
+        background: red;
+        display: flex;
+        align-items: center;
+        z-index: 1000;
+        border-bottom: 2px solid #f4f3f4;
+        box-shadow: 5px 5px 100px rgba(0, 0, 0, 0.5);
+        background-color: white;
+    }
+
+    .headerLeftPart{
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        font-family: 'Rubik Vinyl', cursive;
+        color: #ff4269;
+    }
+
+    .headerRightPart{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        height: 100%;
+    }
+
+    .headerRightPart nav{
+        display: flex;
+        list-style: none;
+    }
+
+    nav li{
+        padding: 10px;
+    }
+
+    .formSearchRecette{
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .formSearchRecette img {
+        width: 100%;
+        z-index: 0;
+    }
+
+</style>
