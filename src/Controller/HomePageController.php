@@ -35,34 +35,27 @@ class HomePageController extends BaseController
     #[Route('/home', name: 'app_home_page_index', methods: ['GET', 'POST'])]
     public function index(Request $request): Response
     {
-        $response = $this->searchRecette($request, 'app_homepage_search');
-
-        if($response instanceof RedirectResponse)
-        {
-            return $response;
-        }
-
-        return $this->renderForm('home_page/index.html.twig', [
+        return $this->render('home_page/index.html.twig', [
             'recettes' => $this->recetteRepository->findThreeLastRecette(),
-            'form' => $response
+            'form' => $this->createForm(SearchType::class, null, ['action' => $this->generateUrl('app_homepage_search')])->createView()
         ]);
     }
 
     #[Route('/search', name: 'app_homepage_search', methods: ['GET', 'POST'])]
     public function search(Request $request): Response
     {
-        $name = $request->get('name');
-        $response = $this->searchRecette($request, 'app_homepage_search');
+        $recette = new Recette();
+        $form = $this->createForm(SearchType::class, $recette)->handleRequest($request);
 
-        if($response instanceof RedirectResponse)
-        {
-            return $response;
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var Recette $recette */
+            $recette = $form->getData();
         }
 
-        return $this->renderForm('Search/index.html.twig', [
-            'recettes' => $this->recetteRepository->filterByRecette($name),
-            'name' => $name,
-            'form' => $response
+        return $this->render('Search/index.html.twig', [
+            'recettes' => null === $recette->getName() ? [] : $this->recetteRepository->filterByRecette($recette->getName()),
+            'name' => $recette->getName(),
+            'form' => $form->createView()
         ]);
     }
 

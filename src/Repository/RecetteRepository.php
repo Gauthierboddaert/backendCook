@@ -67,8 +67,7 @@ class RecetteRepository extends ServiceEntityRepository implements RepositoryInt
     public function findTenLastObject(int $recette = 10) : ? array
     {
         return $this->createQueryBuilder('recette')
-                    ->setMaxResults(':max')
-                    ->setParameter('max', $recette)
+                    ->setMaxResults($recette)
                     ->orderBy('recette.id','DESC')
                     ->getQuery()
                     ->getResult();
