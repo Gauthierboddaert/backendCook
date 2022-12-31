@@ -15,7 +15,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Recette[]    findAll()
  * @method Recette[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class RecetteRepository extends ServiceEntityRepository implements RepositoryInterface
+class RecetteRepository extends ServiceEntityRepository implements RepositoryInterface, RecetteRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -73,4 +73,16 @@ class RecetteRepository extends ServiceEntityRepository implements RepositoryInt
                     ->getResult();
     }
 
+
+    public function UpdateLike(Recette $recette, bool $isLiked)
+    {
+        return $this->createQueryBuilder('recette')
+            ->innerJoin('recette.like', 'like')
+            ->update()
+            ->where('like.recette = :recette')
+            ->setParameter(':recette', $recette)
+            ->set('like.isLike', $isLiked)
+            ->getQuery()
+            ->execute();
+    }
 }

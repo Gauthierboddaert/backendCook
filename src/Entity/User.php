@@ -46,8 +46,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Favoris::class, mappedBy: 'user')]
     private Collection $favoris;
 
-    #[ORM\ManyToMany(targetEntity: Like::class, mappedBy: 'user')]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Like::class)]
     private Collection $likes;
+
 
     public function __construct()
     {
@@ -224,7 +225,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->likes->contains($like)) {
             $this->likes->add($like);
-            $like->addUser($this);
+            $like->setUser($this);
         }
 
         return $this;
@@ -233,9 +234,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeLike(Like $like): self
     {
         if ($this->likes->removeElement($like)) {
-            $like->removeUser($this);
+            // set the owning side to null (unless already changed)
+            if ($like->getUser() === $this) {
+                $like->setUser(null);
+            }
         }
 
         return $this;
     }
+
 }

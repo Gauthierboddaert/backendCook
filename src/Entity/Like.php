@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\LikeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use App\Entity\User;
+use App\Entity\Recette;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: LikeRepository::class)]
@@ -16,11 +18,14 @@ class Like
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToMany(targetEntity: recette::class, inversedBy: 'likes')]
-    private Collection $recette;
+    #[ORM\Column]
+    private ?bool $isLike = null;
 
-    #[ORM\ManyToMany(targetEntity: user::class, inversedBy: 'likes')]
-    private Collection $user;
+    #[ORM\ManyToOne(inversedBy: 'likes')]
+    private ?user $user = null;
+
+    #[ORM\ManyToOne(inversedBy: 'likes')]
+    private ?recette $recette = null;
 
     public function __construct()
     {
@@ -33,50 +38,38 @@ class Like
         return $this->id;
     }
 
-    /**
-     * @return Collection<int, recette>
-     */
-    public function getRecette(): Collection
+    public function isIsLike(): ?bool
     {
-        return $this->recette;
+        return $this->isLike;
     }
 
-    public function addRecette(recette $recette): self
+    public function setIsLike(bool $isLike): self
     {
-        if (!$this->recette->contains($recette)) {
-            $this->recette->add($recette);
-        }
+        $this->isLike = $isLike;
 
         return $this;
     }
 
-    public function removeRecette(recette $recette): self
-    {
-        $this->recette->removeElement($recette);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, user>
-     */
-    public function getUser(): Collection
+    public function getUser(): ?user
     {
         return $this->user;
     }
 
-    public function addUser(user $user): self
+    public function setUser(?user $user): self
     {
-        if (!$this->user->contains($user)) {
-            $this->user->add($user);
-        }
+        $this->user = $user;
 
         return $this;
     }
 
-    public function removeUser(user $user): self
+    public function getRecette(): ?recette
     {
-        $this->user->removeElement($user);
+        return $this->recette;
+    }
+
+    public function setRecette(?recette $recette): self
+    {
+        $this->recette = $recette;
 
         return $this;
     }

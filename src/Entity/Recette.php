@@ -39,11 +39,11 @@ class Recette
     #[ORM\ManyToMany(targetEntity: Favoris::class, mappedBy: 'recette')]
     private Collection $favoris;
 
-    #[ORM\ManyToMany(targetEntity: Like::class, mappedBy: 'recette')]
-    private Collection $likes;
-
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?image $image = null;
+
+    #[ORM\OneToMany(mappedBy: 'recette', targetEntity: Like::class)]
+    private Collection $likes;
 
     public function __toString(): string
     {
@@ -132,7 +132,7 @@ class Recette
         return $this->favoris;
     }
 
-    public function addFavori(Favoris $favori): self
+    public function addFavoris(Favoris $favori): self
     {
         if (!$this->favoris->contains($favori)) {
             $this->favoris->add($favori);
@@ -151,6 +151,18 @@ class Recette
         return $this;
     }
 
+    public function getImage(): ?image
+    {
+        return $this->image;
+    }
+
+    public function setImage(?image $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
     /**
      * @return Collection<int, Like>
      */
@@ -163,7 +175,7 @@ class Recette
     {
         if (!$this->likes->contains($like)) {
             $this->likes->add($like);
-            $like->addRecette($this);
+            $like->setRecette($this);
         }
 
         return $this;
@@ -172,20 +184,11 @@ class Recette
     public function removeLike(Like $like): self
     {
         if ($this->likes->removeElement($like)) {
-            $like->removeRecette($this);
+            // set the owning side to null (unless already changed)
+            if ($like->getRecette() === $this) {
+                $like->setRecette(null);
+            }
         }
-
-        return $this;
-    }
-
-    public function getImage(): ?image
-    {
-        return $this->image;
-    }
-
-    public function setImage(?image $image): self
-    {
-        $this->image = $image;
 
         return $this;
     }

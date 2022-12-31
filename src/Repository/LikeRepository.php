@@ -3,6 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Like;
+use App\Entity\Recette;
+use App\Service\Helper\CriteriaHelper;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -14,7 +16,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Like[]    findAll()
  * @method Like[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class LikeRepository extends ServiceEntityRepository
+class LikeRepository extends ServiceEntityRepository implements LikeRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -39,28 +41,17 @@ class LikeRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Like[] Returns an array of Like objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('l')
-//            ->andWhere('l.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('l.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function UpdateLike(Recette $recette, bool $isLiked)
+    {
+        $qb = $this->createQueryBuilder('like');
+        $qb->update()
+            ->set('like.isLike', ':isLiked')
+            ->where('like.isLike = :isLiked')
+            ->setParameter('isLiked', $isLiked)
+            ->setParameter('recette', $recette);
 
-//    public function findOneBySomeField($value): ?Like
-//    {
-//        return $this->createQueryBuilder('l')
-//            ->andWhere('l.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        return $qb->getQuery()->execute();
+    }
+
+
 }
