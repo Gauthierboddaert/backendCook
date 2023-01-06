@@ -85,4 +85,9 @@ class RecetteRepository extends ServiceEntityRepository implements RepositoryInt
             ->getQuery()
             ->execute();
     }
+
+    public function findTopThreeBestLikedRecipe() : ?array
+    {
+        return [];
+    }
 }

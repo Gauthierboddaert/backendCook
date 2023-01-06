@@ -5,6 +5,7 @@ namespace App\Service;
 use App\Repository\LikeRepository;
 use App\Repository\LikeRepositoryInterface;
 use App\Repository\RecetteRepositoryInterface;
+use Doctrine\ORM\Tools\DebugUnitOfWorkListener;
 
 class LikeManager implements LikeInterface
 {
@@ -27,14 +28,17 @@ class LikeManager implements LikeInterface
     {
         $recette = $this->recetteRepositoryInterface->findOneBy([
             'id' => $id,
-            'users' => 27
+            'users' => 7
         ]);
 
-        if($recette->getLikes()->first()->isIsLike())
+        if(null !== $recette)
         {
-            $this->likeRepositoryInterface->UpdateLike($recette,false);
-        }else{
-            $this->likeRepositoryInterface->UpdateLike($recette,true);
+            $like = $recette->getLikes()->first();
+            $like->isIsLike() ? $like->setIsLike(false) : $like->setIsLike(true);
+
+            $this->likeRepositoryInterface->save($like, true);
         }
+
+
     }
 }

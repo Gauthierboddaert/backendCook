@@ -31,6 +31,6 @@ class  LikesController extends AbstractController
     {
         $this->likeInterface->LikeRecette($id);
 
-        return new JsonResponse('Updated Like', Response::HTTP_OK);
+        return new JsonResponse('',Response::HTTP_OK);
     }
 }

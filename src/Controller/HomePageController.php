@@ -6,6 +6,7 @@ use App\Entity\Recette;
 use App\Form\RecetteType;
 use App\Form\SearchType;
 use App\Repository\RecetteRepository;
+use App\Repository\RecetteRepositoryInterface;
 use App\Repository\RepositoryInterface;
 use App\Service\ImageInterface;
 use App\Service\RecetteInterface;
@@ -23,7 +24,12 @@ class HomePageController extends BaseController
     private ImageInterface $imageInterface;
     private string $image_directory;
 
-    public function __construct(RecetteRepository $recetteRepository, ImageInterface $imageInterface,RepositoryInterface $repositoryInterface, string $image_directory)
+    public function __construct(
+        RecetteRepository $recetteRepository,
+        ImageInterface $imageInterface,
+        RepositoryInterface $repositoryInterface,
+        string $image_directory
+    )
     {
         parent::__construct($recetteRepository, $imageInterface, $image_directory);
         $this->recetteRepository = $recetteRepository;
@@ -36,6 +42,7 @@ class HomePageController extends BaseController
     public function index(Request $request): Response
     {
         return $this->render('home_page/index.html.twig', [
+            'bestThreeLikePublication' => $this->recetteRepository->findTopThreeBestLikedRecipe(),
             'recettes' => $this->recetteRepository->findThreeLastRecette(),
             'form' => $this->createForm(SearchType::class, null, ['action' => $this->generateUrl('app_homepage_search')])->createView()
         ]);

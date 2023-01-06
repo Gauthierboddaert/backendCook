@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Category;
 use App\Entity\Image;
+use App\Entity\Like;
 use App\Entity\Recette;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -27,11 +28,13 @@ class AppFixtures extends Fixture
         for ($i = 0; $i < 20; $i++)
         {
             $recette = new Recette();
+            $like = new Like();
             $category = new Category();
             $image = new Image();
 
 
             $category->setName('VEGETARIEN');
+            $like->setIsLike(false);
             $manager->persist($category);
 
             $image->setName('rsa.png');
@@ -43,6 +46,13 @@ class AppFixtures extends Fixture
             $recette->setImage($image);
             $recette->addCategory($category);
 
+// Assigner l'objet Recette à la propriété $recette de l'objet Like
+            $like->setRecette($recette);
+
+// Ajouter l'objet Like à la collection d'objets Like de l'objet Recette
+            $recette->addLike($like);
+
+            $manager->persist($like);
             $manager->persist($recette);
         }
         $manager->flush();

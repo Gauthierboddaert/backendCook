@@ -27,12 +27,6 @@ class Like
     #[ORM\ManyToOne(inversedBy: 'likes')]
     private ?recette $recette = null;
 
-    public function __construct()
-    {
-        $this->recette = new ArrayCollection();
-        $this->user = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
