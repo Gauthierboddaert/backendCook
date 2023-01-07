@@ -88,6 +88,14 @@ class RecetteRepository extends ServiceEntityRepository implements RepositoryInt
 
     public function findTopThreeBestLikedRecipe() : ?array
     {
-        return [];
+        return $this->createQueryBuilder('recette')
+                ->select('recette, COUNT(l.isLike)')
+                ->innerJoin('recette.likes', 'l')
+                ->andWhere('l.isLike = true')
+                ->groupBy('recette.id')
+                ->orderBy('COUNT(l.isLike)', 'DESC')
+                ->setMaxResults(3)
+                ->getQuery()
+                ->getResult();
     }
 }

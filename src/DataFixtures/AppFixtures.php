@@ -45,11 +45,8 @@ class AppFixtures extends Fixture
             $recette->setUsers($user);
             $recette->setImage($image);
             $recette->addCategory($category);
-
-// Assigner l'objet Recette à la propriété $recette de l'objet Like
             $like->setRecette($recette);
-
-// Ajouter l'objet Like à la collection d'objets Like de l'objet Recette
+            $like->setUser($user);
             $recette->addLike($like);
 
             $manager->persist($like);
