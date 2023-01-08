@@ -48,6 +48,7 @@ class AppFixtures extends Fixture
             $recette->setUsers($user);
             $recette->setImage($image);
             $recette->addCategory($category);
+            $recette->setStep(['Etape 1 :' => 'test']);
             $like->setRecette($recette);
             $like->setUser($user);
             $recette->addLike($like);
