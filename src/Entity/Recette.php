@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use App\Entity\User;
 use App\Entity\Category;
+use Doctrine\DBAL\Types\Types;
 use Symfony\Component\Serializer\Annotation\Groups;
 use App\Entity\Image;
 
@@ -50,6 +51,9 @@ class Recette
 
     #[ORM\Column]
     private ?int $creationTime = null;
+
+    #[ORM\Column(type: Types::ARRAY)]
+    private array $step = [];
 
     public function __toString(): string
     {
@@ -235,6 +239,18 @@ class Recette
     public function setCreationTime(int $creationTime): self
     {
         $this->creationTime = $creationTime;
+
+        return $this;
+    }
+
+    public function getStep(): array
+    {
+        return $this->step;
+    }
+
+    public function setStep(array $step): self
+    {
+        $this->step = $step;
 
         return $this;
     }
