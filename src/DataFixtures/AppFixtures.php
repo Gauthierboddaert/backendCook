@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Category;
 use App\Entity\Image;
+use App\Entity\Ingredient;
 use App\Entity\Like;
 use App\Entity\Recette;
 use App\Entity\User;
@@ -29,6 +30,7 @@ class AppFixtures extends Fixture
         {
             $recette = new Recette();
             $like = new Like();
+            $ingredient = new Ingredient();
             $category = new Category();
             $image = new Image();
 
@@ -42,14 +44,19 @@ class AppFixtures extends Fixture
 
             $recette->setDescriptions('description here'.$i);
             $recette->setName('Name here'.$i);
+            $recette->setCreationTime($i);
             $recette->setUsers($user);
             $recette->setImage($image);
             $recette->addCategory($category);
             $like->setRecette($recette);
             $like->setUser($user);
             $recette->addLike($like);
+            $ingredient->setName('tomate'.$i);
+            $recette->addIngredient($ingredient);
+            $ingredient->addRecette($recette);
 
             $manager->persist($like);
+            $manager->persist($ingredient);
             $manager->persist($recette);
         }
         $manager->flush();

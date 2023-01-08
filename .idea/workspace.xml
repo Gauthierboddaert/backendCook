@@ -4,7 +4,7 @@
     <list default="true" id="581ee74d-4c6c-44fd-b614-95b4990ce11d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/RecetteRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/RecetteRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Recette.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Recette.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -241,6 +241,7 @@
       <workItem from="1672146080715" duration="141000" />
       <workItem from="1672229138324" duration="2773000" />
       <workItem from="1673037818469" duration="7229000" />
+      <workItem from="1673180527839" duration="577000" />
     </task>
     <servers />
   </component>

@@ -45,6 +45,12 @@ class Recette
     #[ORM\OneToMany(mappedBy: 'recette', targetEntity: Like::class)]
     private Collection $likes;
 
+    #[ORM\ManyToMany(targetEntity: Ingredient::class, mappedBy: 'recette')]
+    private Collection $ingredients;
+
+    #[ORM\Column]
+    private ?int $creationTime = null;
+
     public function __toString(): string
     {
         return ($this->getName() !== null) ? $this->getName() : '';
@@ -57,6 +63,7 @@ class Recette
         $this->images = new ArrayCollection();
         $this->favoris = new ArrayCollection();
         $this->likes = new ArrayCollection();
+        $this->ingredients = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -189,6 +196,45 @@ class Recette
                 $like->setRecette(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Ingredient>
+     */
+    public function getIngredients(): Collection
+    {
+        return $this->ingredients;
+    }
+
+    public function addIngredient(Ingredient $ingredient): self
+    {
+        if (!$this->ingredients->contains($ingredient)) {
+            $this->ingredients->add($ingredient);
+            $ingredient->addRecette($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIngredient(Ingredient $ingredient): self
+    {
+        if ($this->ingredients->removeElement($ingredient)) {
+            $ingredient->removeRecette($this);
+        }
+
+        return $this;
+    }
+
+    public function getCreationTime(): ?int
+    {
+        return $this->creationTime;
+    }
+
+    public function setCreationTime(int $creationTime): self
+    {
+        $this->creationTime = $creationTime;
 
         return $this;
     }
