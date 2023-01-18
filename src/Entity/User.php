@@ -34,7 +34,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\OneToMany(mappedBy: 'users', targetEntity: Recette::class)]
+    #[ORM\OneToMany(mappedBy: 'users', targetEntity: Recipe::class)]
     private Collection $recettes;
 
     #[ORM\Column(length: 255)]
@@ -133,14 +133,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Recette>
+     * @return Collection<int, Recipe>
      */
     public function getRecettes(): Collection
     {
         return $this->recettes;
     }
 
-    public function addRecette(Recette $recette): self
+    public function addRecette(Recipe $recette): self
     {
         if (!$this->recettes->contains($recette)) {
             $this->recettes->add($recette);
@@ -150,7 +150,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeRecette(Recette $recette): self
+    public function removeRecette(Recipe $recette): self
     {
         if ($this->recettes->removeElement($recette)) {
             // set the owning side to null (unless already changed)

@@ -4,20 +4,20 @@ namespace App\Service;
 
 use App\Repository\LikeRepository;
 use App\Repository\LikeRepositoryInterface;
-use App\Repository\RecetteRepositoryInterface;
+use App\Repository\RecipeRepositoryInterface;
 use Doctrine\ORM\Tools\DebugUnitOfWorkListener;
 
-class LikeManager implements LikeInterface
+class LikeManager implements LikeManagerInterface
 {
 
-    private RecetteRepositoryInterface $recetteRepositoryInterface;
+    private RecipeRepositoryInterface $recetteRepositoryInterface;
     private LikeRepositoryInterface $likeRepositoryInterface;
     private LikeRepository $likeRepository;
 
     public function __construct(
-        LikeRepository $likeRepository,
-        RecetteRepositoryInterface $recetteRepositoryInterface,
-        LikeRepositoryInterface $likeRepositoryInterface
+        LikeRepository            $likeRepository,
+        RecipeRepositoryInterface $recetteRepositoryInterface,
+        LikeRepositoryInterface   $likeRepositoryInterface
     )
     {
         $this->recetteRepositoryInterface = $recetteRepositoryInterface;

@@ -6,7 +6,7 @@ use App\Repository\LikeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use App\Entity\User;
-use App\Entity\Recette;
+use App\Entity\Recipe;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: LikeRepository::class)]
@@ -25,7 +25,7 @@ class Like
     private ?user $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'likes')]
-    private ?recette $recette = null;
+    private ?Recipe $recette = null;
 
     public function getId(): ?int
     {
@@ -56,12 +56,12 @@ class Like
         return $this;
     }
 
-    public function getRecette(): ?recette
+    public function getRecette(): ?Recipe
     {
         return $this->recette;
     }
 
-    public function setRecette(?recette $recette): self
+    public function setRecette(?Recipe $recette): self
     {
         $this->recette = $recette;
 

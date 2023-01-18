@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Repository\RecetteRepository;
+use App\Repository\RecipeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use App\Entity\User;
@@ -13,8 +13,8 @@ use App\Entity\Image;
 
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: RecetteRepository::class)]
-class Recette
+#[ORM\Entity(repositoryClass: RecipeRepository::class)]
+class Recipe
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

@@ -2,11 +2,11 @@
 
 namespace App\Service;
 
-use App\Entity\Recette;
-use App\Repository\RecetteRepository;
+use App\Entity\Recipe;
+use App\Repository\RecipeRepository;
 use Symfony\Component\Form\FormInterface;
 
-interface LikeInterface
+interface LikeManagerInterface
 {
     public function LikeRecette(int $id) : void;
 }

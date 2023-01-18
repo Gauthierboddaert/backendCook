@@ -18,7 +18,7 @@ class Ingredient
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToMany(targetEntity: recette::class, inversedBy: 'ingredients')]
+    #[ORM\ManyToMany(targetEntity: Recipe::class, inversedBy: 'ingredients')]
     private Collection $recette;
 
     public function __construct()
@@ -44,14 +44,14 @@ class Ingredient
     }
 
     /**
-     * @return Collection<int, recette>
+     * @return Collection<int, Recipe>
      */
     public function getRecette(): Collection
     {
         return $this->recette;
     }
 
-    public function addRecette(recette $recette): self
+    public function addRecette(Recipe $recette): self
     {
         if (!$this->recette->contains($recette)) {
             $this->recette->add($recette);
@@ -60,7 +60,7 @@ class Ingredient
         return $this;
     }
 
-    public function removeRecette(recette $recette): self
+    public function removeRecette(Recipe $recette): self
     {
         $this->recette->removeElement($recette);
 

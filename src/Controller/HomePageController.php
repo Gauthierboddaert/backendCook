@@ -2,14 +2,14 @@
 
 namespace App\Controller;
 
-use App\Entity\Recette;
-use App\Form\RecetteType;
+use App\Entity\Recipe;
+use App\Form\RecipeType;
 use App\Form\SearchType;
-use App\Repository\RecetteRepository;
-use App\Repository\RecetteRepositoryInterface;
+use App\Repository\RecipeRepository;
+use App\Repository\RecipeRepositoryInterface;
 use App\Repository\RepositoryInterface;
-use App\Service\ImageInterface;
-use App\Service\RecetteInterface;
+use App\Service\ImageManagerInterface;
+use App\Service\RecipeInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,16 +19,16 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/')]
 class HomePageController extends BaseController
 {
-    private RecetteRepository $recetteRepository;
+    private RecipeRepository $recetteRepository;
     private RepositoryInterface $repositoryInterface;
-    private ImageInterface $imageInterface;
+    private ImageManagerInterface $imageInterface;
     private string $image_directory;
 
     public function __construct(
-        RecetteRepository $recetteRepository,
-        ImageInterface $imageInterface,
-        RepositoryInterface $repositoryInterface,
-        string $image_directory
+        RecipeRepository      $recetteRepository,
+        ImageManagerInterface $imageInterface,
+        RepositoryInterface   $repositoryInterface,
+        string                $image_directory
     )
     {
         parent::__construct($recetteRepository, $imageInterface, $image_directory);
@@ -51,11 +51,11 @@ class HomePageController extends BaseController
     #[Route('/search', name: 'app_homepage_search', methods: ['GET', 'POST'])]
     public function search(Request $request): Response
     {
-        $recette = new Recette();
+        $recette = new Recipe();
         $form = $this->createForm(SearchType::class, $recette)->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var Recette $recette */
+            /** @var Recipe $recette */
             $recette = $form->getData();
         }
 
@@ -70,8 +70,8 @@ class HomePageController extends BaseController
     #[Route('/recette/new', name: 'app_home_page_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
-        $recette = new Recette();
-        $form = $this->createForm(RecetteType::class, $recette);
+        $recette = new Recipe();
+        $form = $this->createForm(RecipeType::class, $recette);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -89,7 +89,7 @@ class HomePageController extends BaseController
     }
 
     #[Route('/recette/{id}', name: 'app_home_page_show', methods: ['GET'])]
-    public function show(Recette $recette): Response
+    public function show(Recipe $recette): Response
     {
         return $this->render('recette/show.html.twig', [
             'recette' => $recette,
@@ -97,9 +97,9 @@ class HomePageController extends BaseController
     }
 
     #[Route('/recette/{id}/edit', name: 'app_home_page_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Recette $recette): Response
+    public function edit(Request $request, Recipe $recette): Response
     {
-        $form = $this->createForm(RecetteType::class, $recette);
+        $form = $this->createForm(RecipeType::class, $recette);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -117,7 +117,7 @@ class HomePageController extends BaseController
     }
 
     #[Route('/recette/{id}', name: 'app_home_page_delete', methods: ['POST'])]
-    public function delete(Request $request, Recette $recette): Response
+    public function delete(Request $request, Recipe $recette): Response
     {
         if ($this->isCsrfTokenValid('delete'.$recette->getId(), $request->request->get('_token'))) {
             $this->recetteRepository->remove($recette, true);

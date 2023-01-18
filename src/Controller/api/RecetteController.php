@@ -3,11 +3,11 @@
 namespace App\Controller\api;
 
 use App\Entity\Category;
-use App\Entity\Recette;
+use App\Entity\Recipe;
 use App\Repository\CategoryRepository;
-use App\Repository\RecetteRepository;
+use App\Repository\RecipeRepository;
 use App\Repository\UserRepository;
-use App\Service\RecetteManager;
+use App\Service\RecipeManager;
 use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Util\Json;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,20 +21,20 @@ use Symfony\Component\HttpFoundation\Request;
 #[Route('/api')]
 class RecetteController extends AbstractController
 {
-    private RecetteRepository $recetteRepository;
+    private RecipeRepository $recetteRepository;
     private EntityManagerInterface $entityManager;
     private SerializerInterface $serializer;
     private UserRepository $userRepository;
     private CategoryRepository $categoryRepository;
-    private RecetteManager $recetteManager;
+    private RecipeManager $recetteManager;
 
     public function __construct(
-        CategoryRepository $categoryRepository,
-        UserRepository $userRepository,
-        RecetteRepository $recetteRepository,
-        SerializerInterface $serializer,
+        CategoryRepository     $categoryRepository,
+        UserRepository         $userRepository,
+        RecipeRepository       $recetteRepository,
+        SerializerInterface    $serializer,
         EntityManagerInterface $entityManager,
-        RecetteManager $recetteManager
+        RecipeManager $recetteManager
     )
     {
         $this->recetteRepository = $recetteRepository;
@@ -63,7 +63,7 @@ class RecetteController extends AbstractController
         $recette = $this->recetteRepository->findOneBy(['id' => $id]);
 
         if(null === $recette)
-            return new JsonResponse($this->serializer->serialize("Recette doesn't exist",'json'),Response::HTTP_BAD_REQUEST, [], true);
+            return new JsonResponse($this->serializer->serialize("Recipe doesn't exist",'json'),Response::HTTP_BAD_REQUEST, [], true);
 
         return new JsonResponse(
             $this->serializer->serialize($recette,
@@ -80,7 +80,7 @@ class RecetteController extends AbstractController
         $recette = $this->recetteRepository->findOneBy(['id' => $id]);
 //        dd($recette);
         if(null === $recette)
-            return new JsonResponse($this->serializer->serialize("Recette doesn't exist",'json'),Response::HTTP_BAD_REQUEST, [], true);
+            return new JsonResponse($this->serializer->serialize("Recipe doesn't exist",'json'),Response::HTTP_BAD_REQUEST, [], true);
 
         $this->recetteRepository->remove($recette);
         $this->entityManager->flush();
@@ -96,7 +96,7 @@ class RecetteController extends AbstractController
     {
          $request = $request->toArray();
 
-         $recette = new Recette();
+         $recette = new Recipe();
          $recette->setName($request['name']);
          $recette->setDescriptions($request['description']);
          $recette->setUsers($this->userRepository->findOneBy(['email' => $request['email']]));
@@ -104,7 +104,7 @@ class RecetteController extends AbstractController
          $this->recetteRepository->save($recette, true);
 
          return new JsonResponse($this->serializer->serialize(
-             'You have add a new Recette :) !'
+             'You have add a new Recipe :) !'
              ,'json',[]),
              Response::HTTP_CREATED,
              [],

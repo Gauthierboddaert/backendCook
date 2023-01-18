@@ -2,26 +2,26 @@
 
 namespace App\Controller;
 
-use App\Entity\Recette;
+use App\Entity\Recipe;
 use App\Form\SearchType;
-use App\Repository\RecetteRepository;
-use App\Service\ImageInterface;
-use App\Service\RecetteInterface;
+use App\Repository\RecipeRepository;
+use App\Service\ImageManagerInterface;
+use App\Service\RecipeInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-abstract class BaseController extends AbstractController implements RecetteInterface
+abstract class BaseController extends AbstractController implements RecipeInterface
 {
-    private RecetteRepository $recetteRepository;
-    private ImageInterface $imageInterface;
+    private RecipeRepository $recetteRepository;
+    private ImageManagerInterface $imageInterface;
     private string $image_directory;
 
     public function __construct(
-        RecetteRepository $recetteRepository,
-        ImageInterface $imageInterface,
-        string $image_directory
+        RecipeRepository      $recetteRepository,
+        ImageManagerInterface $imageInterface,
+        string                $image_directory
     )
     {
         $this->recetteRepository = $recetteRepository;
@@ -31,7 +31,7 @@ abstract class BaseController extends AbstractController implements RecetteInter
 
     public function searchRecette(Request $request, string $redirect) : mixed
     {
-        $recette = new Recette();
+        $recette = new Recipe();
         $form = $this->createForm(SearchType::class, $recette);
         $form->handleRequest($request);
 

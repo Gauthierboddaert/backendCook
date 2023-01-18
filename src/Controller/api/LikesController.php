@@ -4,11 +4,11 @@ namespace App\Controller\api;
 
 use App\Repository\LikeRepository;
 use App\Repository\LikeRepositoryInterface;
-use App\Repository\RecetteRepository;
-use App\Repository\RecetteRepositoryInterface;
-use App\Service\LikeInterface;
-use App\Service\LikeManager;
-use App\Service\RecetteInterface;
+use App\Repository\RecipeRepository;
+use App\Repository\RecipeRepositoryInterface;
+use App\Service\LikeManagerInterface;
+use App\Service\LikeManagerManager;
+use App\Service\RecipeInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,10 +17,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class  LikesController extends AbstractController
 {
 
-    private LikeInterface $likeInterface;
+    private LikeManagerInterface $likeInterface;
 
     public function __construct(
-        LikeInterface $likeInterface
+        LikeManagerInterface $likeInterface
     )
     {
         $this->likeInterface = $likeInterface;

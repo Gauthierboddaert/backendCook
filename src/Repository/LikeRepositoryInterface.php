@@ -2,9 +2,9 @@
 
 namespace App\Repository;
 
-use App\Entity\Recette;
+use App\Entity\Recipe;
 
 interface LikeRepositoryInterface
 {
-    public function UpdateLike(Recette $recette,bool $isLiked);
+    public function UpdateLike(Recipe $recette, bool $isLiked);
 }

@@ -21,7 +21,7 @@ class Category
     #[Groups(['getRecette'])]
     private ?string $name = null;
 
-    #[ORM\ManyToMany(targetEntity: Recette::class, mappedBy: 'category')]
+    #[ORM\ManyToMany(targetEntity: Recipe::class, mappedBy: 'category')]
     private Collection $recettes;
 
     public function __construct()
@@ -52,14 +52,14 @@ class Category
     }
 
     /**
-     * @return Collection<int, Recette>
+     * @return Collection<int, Recipe>
      */
     public function getRecettes(): Collection
     {
         return $this->recettes;
     }
 
-    public function addRecette(Recette $recette): self
+    public function addRecette(Recipe $recette): self
     {
         if (!$this->recettes->contains($recette)) {
             $this->recettes->add($recette);
@@ -69,7 +69,7 @@ class Category
         return $this;
     }
 
-    public function removeRecette(Recette $recette): self
+    public function removeRecette(Recipe $recette): self
     {
         if ($this->recettes->removeElement($recette)) {
             $recette->removeCategory($this);

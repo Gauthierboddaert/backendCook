@@ -6,7 +6,7 @@ use App\Entity\Category;
 use App\Entity\Image;
 use App\Entity\Ingredient;
 use App\Entity\Like;
-use App\Entity\Recette;
+use App\Entity\Recipe;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -28,7 +28,7 @@ class AppFixtures extends Fixture
 
         for ($i = 0; $i < 20; $i++)
         {
-            $recette = new Recette();
+            $recette = new Recipe();
             $like = new Like();
             $ingredient = new Ingredient();
             $category = new Category();

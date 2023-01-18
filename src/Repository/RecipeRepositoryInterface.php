@@ -2,9 +2,9 @@
 
 namespace App\Repository;
 
-use App\Entity\Recette;
+use App\Entity\Recipe;
 
-interface RecetteRepositoryInterface
+interface RecipeRepositoryInterface
 {
     public function findTopThreeBestLikedRecipe() : ?array;
 }

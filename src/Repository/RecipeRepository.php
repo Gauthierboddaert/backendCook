@@ -2,27 +2,27 @@
 
 namespace App\Repository;
 
-use App\Entity\Recette;
+use App\Entity\Recipe;
 use App\Service\Helper\CriteriaHelper;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Recette>
+ * @extends ServiceEntityRepository<Recipe>
  *
- * @method Recette|null find($id, $lockMode = null, $lockVersion = null)
- * @method Recette|null findOneBy(array $criteria, array $orderBy = null)
- * @method Recette[]    findAll()
- * @method Recette[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Recipe|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Recipe|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Recipe[]    findAll()
+ * @method Recipe[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class RecetteRepository extends ServiceEntityRepository implements RepositoryInterface, RecetteRepositoryInterface
+class RecipeRepository extends ServiceEntityRepository implements RepositoryInterface, RecipeRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Recette::class);
+        parent::__construct($registry, Recipe::class);
     }
 
-    public function save(Recette $entity, bool $flush = false): void
+    public function save(Recipe $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -31,7 +31,7 @@ class RecetteRepository extends ServiceEntityRepository implements RepositoryInt
         }
     }
 
-    public function remove(Recette $entity, bool $flush = false): void
+    public function remove(Recipe $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -74,7 +74,7 @@ class RecetteRepository extends ServiceEntityRepository implements RepositoryInt
     }
 
 
-    public function UpdateLike(Recette $recette, bool $isLiked)
+    public function UpdateLike(Recipe $recette, bool $isLiked)
     {
         return $this->createQueryBuilder('recette')
             ->innerJoin('recette.like', 'like')

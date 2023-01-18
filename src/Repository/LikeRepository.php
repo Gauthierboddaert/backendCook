@@ -3,7 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Like;
-use App\Entity\Recette;
+use App\Entity\Recipe;
 use App\Service\Helper\CriteriaHelper;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -41,7 +41,7 @@ class LikeRepository extends ServiceEntityRepository implements LikeRepositoryIn
         }
     }
 
-    public function UpdateLike(Recette $recette, bool $isLiked)
+    public function UpdateLike(Recipe $recette, bool $isLiked)
     {
         $qb = $this->createQueryBuilder('like');
         $qb->update()

@@ -15,7 +15,7 @@ class Favoris
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToMany(targetEntity: recette::class, inversedBy: 'favoris')]
+    #[ORM\ManyToMany(targetEntity: Recipe::class, inversedBy: 'favoris')]
     private Collection $recette;
 
     #[ORM\ManyToMany(targetEntity: user::class, inversedBy: 'favoris')]
@@ -33,14 +33,14 @@ class Favoris
     }
 
     /**
-     * @return Collection<int, recette>
+     * @return Collection<int, Recipe>
      */
     public function getRecette(): Collection
     {
         return $this->recette;
     }
 
-    public function addRecette(recette $recette): self
+    public function addRecette(Recipe $recette): self
     {
         if (!$this->recette->contains($recette)) {
             $this->recette->add($recette);
@@ -49,7 +49,7 @@ class Favoris
         return $this;
     }
 
-    public function removeRecette(recette $recette): self
+    public function removeRecette(Recipe $recette): self
     {
         $this->recette->removeElement($recette);
 
