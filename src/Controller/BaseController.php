@@ -6,13 +6,13 @@ use App\Entity\Recipe;
 use App\Form\SearchType;
 use App\Repository\RecipeRepository;
 use App\Service\ImageManagerInterface;
-use App\Service\RecipeInterface;
+use App\Service\RecipeManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-abstract class BaseController extends AbstractController implements RecipeInterface
+abstract class BaseController extends AbstractController implements RecipeManagerInterface
 {
     private RecipeRepository $recetteRepository;
     private ImageManagerInterface $imageInterface;

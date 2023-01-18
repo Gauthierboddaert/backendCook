@@ -28,7 +28,7 @@ class AppFixtures extends Fixture
 
         for ($i = 0; $i < 20; $i++)
         {
-            $recette = new Recipe();
+            $recipe = new Recipe();
             $like = new Like();
             $ingredient = new Ingredient();
             $category = new Category();
@@ -42,23 +42,26 @@ class AppFixtures extends Fixture
             $image->setName('rsa.png');
             $manager->persist($image);
 
-            $recette->setDescriptions('description here'.$i);
-            $recette->setName('Name here'.$i);
-            $recette->setCreationTime($i);
-            $recette->setUsers($user);
-            $recette->setImage($image);
-            $recette->addCategory($category);
-            $recette->setStep(['Etape 1 :' => 'test']);
-            $like->setRecette($recette);
+            $recipe->setDescriptions('description here'.$i);
+            $recipe->setName('Name here'.$i);
+            $recipe->setCreationTime($i);
+            $recipe->setCreatedAt(new \DateTime());
+            $recipe->setUpdatedAt(new \DateTime());
+
+            $recipe->setUsers($user);
+            $recipe->setImage($image);
+            $recipe->addCategory($category);
+            $recipe->setStep(['Etape 1 :' => 'test']);
+            $like->setRecette($recipe);
             $like->setUser($user);
-            $recette->addLike($like);
+            $recipe->addLike($like);
             $ingredient->setName('tomate'.$i);
-            $recette->addIngredient($ingredient);
-            $ingredient->addRecette($recette);
+            $recipe->addIngredient($ingredient);
+            $ingredient->addRecette($recipe);
 
             $manager->persist($like);
             $manager->persist($ingredient);
-            $manager->persist($recette);
+            $manager->persist($recipe);
         }
         $manager->flush();
     }

@@ -2,35 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="581ee74d-4c6c-44fd-b614-95b4990ce11d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/BaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/BaseController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/HomePageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomePageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/api/LikesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/api/LikesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/api/RecetteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/api/RecetteController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Category.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Favoris.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Favoris.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Ingredient.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Ingredient.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Like.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Like.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Recette.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Recipe.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/LoadRecipeType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/LoadRecipeType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/RecetteType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/RecipeType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/SearchType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/SearchType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/LikeRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/LikeRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/LikeRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/LikeRepositoryInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/RecetteRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/RecipeRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/RecetteRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/RecipeRepositoryInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/Helper/CriteriaHelper.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/Helper/CriteriaHelper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/ImageInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/ImageManagerInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/ImageManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/ImageManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/LikeInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/LikeManagerInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/LikeManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/LikeManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/RecetteInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/RecipeInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/RecetteManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/RecipeManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/RecipeInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/RecipeManagerInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,6 +184,9 @@
       <path value="$PROJECT_DIR$/vendor/league/uri" />
       <path value="$PROJECT_DIR$/vendor/league/uri-interfaces" />
       <path value="$PROJECT_DIR$/vendor/calcinai/php-imagick" />
+      <path value="$PROJECT_DIR$/vendor/behat/transliterator" />
+      <path value="$PROJECT_DIR$/vendor/stof/doctrine-extensions-bundle" />
+      <path value="$PROJECT_DIR$/vendor/gedmo/doctrine-extensions" />
     </include_path>
   </component>
   <component name="ProjectId" id="2IRjFdau7fxSURpAylfNzryjg5c" />
@@ -275,6 +258,7 @@
       <workItem from="1672229138324" duration="2773000" />
       <workItem from="1673037818469" duration="7229000" />
       <workItem from="1673180527839" duration="1668000" />
+      <workItem from="1674069915240" duration="2409000" />
     </task>
     <servers />
   </component>

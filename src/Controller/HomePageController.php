@@ -9,7 +9,7 @@ use App\Repository\RecipeRepository;
 use App\Repository\RecipeRepositoryInterface;
 use App\Repository\RepositoryInterface;
 use App\Service\ImageManagerInterface;
-use App\Service\RecipeInterface;
+use App\Service\RecipeManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -55,12 +55,12 @@ class HomePageController extends BaseController
         $form = $this->createForm(SearchType::class, $recette)->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var Recipe $recette */
-            $recette = $form->getData();
+            /** @var Recipe $recipe */
+            $recipe = $form->getData();
         }
 
         return $this->render('Search/index.html.twig', [
-            'recettes' => null === $recette->getName() ? [] : $this->recetteRepository->filterByRecette($recette->getName()),
+            'recettes' => null === $recipe->getName() ? [] : $this->recetteRepository->filterByRecette($recipe->getName()),
             'name' => $recette->getName(),
             'form' => $form->createView()
         ]);

@@ -8,7 +8,7 @@ use App\Repository\RecipeRepository;
 use App\Repository\RecipeRepositoryInterface;
 use App\Service\LikeManagerInterface;
 use App\Service\LikeManagerManager;
-use App\Service\RecipeInterface;
+use App\Service\RecipeManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
