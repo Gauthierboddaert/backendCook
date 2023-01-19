@@ -9,6 +9,5 @@ use Symfony\Component\HttpFoundation\Request;
 
 interface RecipeManagerInterface
 {
-    public function searchRecette(Request $request,string $redirect) : mixed;
-
+    public function createNewRecipe(Recipe $recipe, FormInterface $form ) : bool;
 }

@@ -23,12 +23,14 @@ class HomePageController extends BaseController
     private RepositoryInterface $repositoryInterface;
     private ImageManagerInterface $imageInterface;
     private string $image_directory;
+    private RecipeManagerInterface $recipeManager;
 
     public function __construct(
         RecipeRepository      $recetteRepository,
         ImageManagerInterface $imageInterface,
         RepositoryInterface   $repositoryInterface,
-        string                $image_directory
+        string                $image_directory,
+        RecipeManagerInterface $recipeManager
     )
     {
         parent::__construct($recetteRepository, $imageInterface, $image_directory);
@@ -36,6 +38,7 @@ class HomePageController extends BaseController
         $this->imageInterface = $imageInterface;
         $this->image_directory = $image_directory;
         $this->repositoryInterface = $repositoryInterface;
+        $this->recipeManager = $recipeManager;
     }
 
     #[Route('/home', name: 'app_home_page_index', methods: ['GET', 'POST'])]
@@ -70,16 +73,15 @@ class HomePageController extends BaseController
     #[Route('/recette/new', name: 'app_home_page_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
+
         $recette = new Recipe();
         $form = $this->createForm(RecipeType::class, $recette);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->recetteRepository->save($recette, true);
-
-            // Move image
-            $this->imageInterface->downloadImage($form, $recette,$this->recetteRepository,$this->image_directory);
-            return $this->redirectToRoute('app_home_page_index', [], Response::HTTP_SEE_OTHER);
+            if($this->recipeManager->createNewRecipe($recette)){
+                return $this->redirectToRoute('app_home_page_index', [], Response::HTTP_SEE_OTHER);
+            }
         }
 
         return $this->renderForm('recette/new.html.twig', [

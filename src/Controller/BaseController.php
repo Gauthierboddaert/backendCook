@@ -12,7 +12,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-abstract class BaseController extends AbstractController implements RecipeManagerInterface
+abstract class BaseController extends AbstractController
 {
     private RecipeRepository $recetteRepository;
     private ImageManagerInterface $imageInterface;
