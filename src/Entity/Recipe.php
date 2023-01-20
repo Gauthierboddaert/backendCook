@@ -55,8 +55,9 @@ class Recipe
     #[ORM\Column]
     private ?int $creationTime = null;
 
-    #[ORM\Column(type: Types::ARRAY)]
-    private array $step = [];
+    #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: RecipeStep::class)]
+    private Collection $recipeStep;
+
 
     public function __toString(): string
     {
@@ -71,6 +72,7 @@ class Recipe
         $this->favoris = new ArrayCollection();
         $this->likes = new ArrayCollection();
         $this->ingredients = new ArrayCollection();
+        $this->recipeStep = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -246,14 +248,32 @@ class Recipe
         return $this;
     }
 
-    public function getStep(): array
+    /**
+     * @return Collection<int, RecipeStep>
+     */
+    public function getRecipeStep(): Collection
     {
-        return $this->step;
+        return $this->recipeStep;
     }
 
-    public function setStep(array $step): self
+    public function addRecipeStep(RecipeStep $recipeStep): self
     {
-        $this->step = $step;
+        if (!$this->recipeStep->contains($recipeStep)) {
+            $this->recipeStep->add($recipeStep);
+            $recipeStep->setRecipe($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRecipeStep(RecipeStep $recipeStep): self
+    {
+        if ($this->recipeStep->removeElement($recipeStep)) {
+            // set the owning side to null (unless already changed)
+            if ($recipeStep->getRecipe() === $this) {
+                $recipeStep->setRecipe(null);
+            }
+        }
 
         return $this;
     }

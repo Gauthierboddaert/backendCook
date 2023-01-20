@@ -59,11 +59,6 @@ class RecipeType extends AbstractType
             ->add('creationTime', TimeType::class, [
 
             ])
-            ->add('step', CollectionType::class,[
-                'entry_type' => TextType::class,
-                'allow_add' => true,
-                'allow_delete' => true
-            ])
         ;
     }
 
