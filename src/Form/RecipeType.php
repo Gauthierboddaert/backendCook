@@ -59,6 +59,7 @@ class RecipeType extends AbstractType
             ->add('creationTime', TimeType::class, [
 
             ])
+            ->add('recipeStep')
         ;
     }
 

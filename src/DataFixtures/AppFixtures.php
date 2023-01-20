@@ -7,6 +7,7 @@ use App\Entity\Image;
 use App\Entity\Ingredient;
 use App\Entity\Like;
 use App\Entity\Recipe;
+use App\Entity\RecipeStep;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -29,6 +30,9 @@ class AppFixtures extends Fixture
         for ($i = 0; $i < 20; $i++)
         {
             $recipe = new Recipe();
+            $recipeStep = new RecipeStep();
+            $recipeStep2 = new RecipeStep();
+
             $like = new Like();
             $ingredient = new Ingredient();
             $category = new Category();
@@ -51,6 +55,14 @@ class AppFixtures extends Fixture
             $recipe->setUsers($user);
             $recipe->setImage($image);
             $recipe->addCategory($category);
+            $recipeStep->setName('firstStep'.$i);
+            $recipeStep2->setName('secondStep'.$i);
+            $recipeStep->setDescriptions('descritpion1'.$i);
+            $recipeStep2->setDescriptions('descritpion2'.$i);
+            $recipeStep->setRecipe($recipe);
+            $recipeStep2->setRecipe($recipe);
+            $recipe->addRecipeStep($recipeStep);
+            $recipe->addRecipeStep($recipeStep2);
             $like->setRecette($recipe);
             $like->setUser($user);
             $recipe->addLike($like);
@@ -59,6 +71,8 @@ class AppFixtures extends Fixture
             $ingredient->addRecette($recipe);
 
             $manager->persist($like);
+            $manager->persist($recipeStep);
+            $manager->persist($recipeStep2);
             $manager->persist($ingredient);
             $manager->persist($recipe);
         }
