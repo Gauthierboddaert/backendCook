@@ -25,9 +25,9 @@ RUN docker-php-ext-install \
         opcache
 
 # Installez nginx et configurez le serveur
-RUN apk add --no-cache nginx && \
-    mkdir -p /run/nginx
+RUN apk add --no-cache nginx
 COPY config/nginx.conf /etc/nginx/nginx.conf
+
 
 # Copiez le projet Symfony dans le container
 COPY . /var/www/symfony
