@@ -4,7 +4,9 @@ namespace App\Form;
 
 use App\Entity\Ingredient;
 use App\Entity\Recipe;
+use App\Entity\RecipeStep;
 use App\Entity\User;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping\Entity;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -29,6 +31,11 @@ class RecipeType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        //this code allow to set the first step of recipe
+        $recipeStepsValues = new ArrayCollection();
+        $recipeStepsValue = new RecipeStep();
+        $recipeStepsValues->add($recipeStepsValue);
+
         $builder
             ->add('name')
             ->add('descriptions')
@@ -59,7 +66,12 @@ class RecipeType extends AbstractType
             ->add('creationTime', TimeType::class, [
 
             ])
-            ->add('recipeStep')
+            ->add('recipeStep', CollectionType::class, [
+                'entry_type' => RecipeStepValueType::class,
+                'data' => $recipeStepsValues,
+                'allow_add' => true,
+                'allow_delete' => true
+            ])
         ;
     }
 
