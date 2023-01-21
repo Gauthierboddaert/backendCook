@@ -55,7 +55,7 @@ class Recipe
     #[ORM\Column]
     private ?int $creationTime = null;
 
-    #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: RecipeStep::class)]
+    #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: RecipeStep::class,cascade: ['persist', 'remove'])]
     private Collection $recipeStep;
 
 

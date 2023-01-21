@@ -43,10 +43,10 @@ class AppFixtures extends Fixture
             $like->setIsLike(false);
             $manager->persist($category);
 
-            $image->setName('rsa.png');
+            $image->setName('ham.jpeg');
             $manager->persist($image);
 
-            $recipe->setDescriptions('description here'.$i);
+            $recipe->setDescriptions('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum cupiditate enim eveniet illum magni quidem, quis recusandae reprehenderit velit! Debitis molestias numquam sit vitae. At distinctio natus recusandae rem voluptatem.'.$i);
             $recipe->setName('Name here'.$i);
             $recipe->setCreationTime($i);
             $recipe->setCreatedAt(new \DateTime());

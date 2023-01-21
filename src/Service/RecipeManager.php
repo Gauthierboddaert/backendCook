@@ -46,7 +46,7 @@ class RecipeManager implements RecipeManagerInterface
         $this->recipeRepository->save($recipe, true);
 
         //allow to move image in directory of project uploads/image_recipe
-        $this->imageInterface->downloadImage($form, $recipe,$this->recetteRepository,$this->image_directory);
+        $this->imageManager->downloadImage($form, $recipe,$this->recipeRepository,$this->image_directory);
 
         return true;
     }

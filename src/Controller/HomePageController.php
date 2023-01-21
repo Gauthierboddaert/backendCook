@@ -79,7 +79,7 @@ class HomePageController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if($this->recipeManager->createNewRecipe($recette)){
+            if($this->recipeManager->createNewRecipe($recette, $form)){
                 return $this->redirectToRoute('app_home_page_index', [], Response::HTTP_SEE_OTHER);
             }
         }
@@ -132,8 +132,9 @@ class HomePageController extends BaseController
     #[Route('/recette', name: 'app_homepage_recette', methods: ['GET'])]
     public function findAllRecette(): Response
     {
-        return $this->renderForm('recette/index.html.twig', [
-            'recettes' => $this->repositoryInterface->findTenLastObject()
+        return $this->render('recette/index.html.twig', [
+            'recettes' => $this->repositoryInterface->findTenLastObject(),
+            'form' => $this->createForm(SearchType::class, null, ['action' => $this->generateUrl('app_homepage_search')])->createView()
         ]);
     }
 }
