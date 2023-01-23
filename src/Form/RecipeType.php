@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\Ingredient;
 use App\Entity\Recipe;
 use App\Entity\RecipeStep;
@@ -54,7 +55,12 @@ class RecipeType extends AbstractType
                 'data' => $this->security->getUser(),
                 'mapped' => false
             ])
-            ->add('category')
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'name',
+                'multiple' => true,
+                'autocomplete' => true
+            ])
             ->add('ingredients', EntityType::class, [
                 'class' => Ingredient::class,
                 'choice_label' => 'name',
@@ -64,6 +70,7 @@ class RecipeType extends AbstractType
                     return $ingredientRepository->createQueryBuilder('r')
                         ->orderBy('r.name', 'ASC');
                 },
+                'autocomplete' => true
             ])
             ->add('creationTime', ChoiceType::class, [
                 'choices' => [
