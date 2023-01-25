@@ -53,7 +53,7 @@ class RecipeType extends AbstractType
             ->add('users', EntityType::class, [
                 'class' => User::class,
                 'data' => $this->security->getUser(),
-                'mapped' => false
+                'disabled' => true
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
@@ -87,7 +87,8 @@ class RecipeType extends AbstractType
                 'entry_type' => RecipeStepValueType::class,
                 'data' => $recipeStepsValues,
                 'allow_add' => true,
-                'allow_delete' => true
+                'allow_delete' => true,
+                'by_reference' => false,
             ])
         ;
     }
