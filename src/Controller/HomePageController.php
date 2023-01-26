@@ -74,18 +74,20 @@ class HomePageController extends BaseController
     public function new(Request $request): Response
     {
 
-        $recette = new Recipe();
-        $form = $this->createForm(RecipeType::class, $recette);
+        $user = $this->getUser();
+        $recipe = new Recipe();
+        $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if($this->recipeManager->createNewRecipe($recette, $form)){
+            $recipe->setUsers($user);
+            if($this->recipeManager->createNewRecipe($recipe, $form)){
                 return $this->redirectToRoute('app_home_page_index', [], Response::HTTP_SEE_OTHER);
             }
         }
 
         return $this->renderForm('recette/new.html.twig', [
-            'recette' => $recette,
+            'recette' => $recipe,
             'form' => $form
         ]);
     }
