@@ -80,8 +80,7 @@ class HomePageController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $recipe->setUsers($user);
-            if($this->recipeManager->createNewRecipe($recipe, $form)){
+            if($this->recipeManager->createNewRecipe($recipe,$user, $form)){
                 return $this->redirectToRoute('app_home_page_index', [], Response::HTTP_SEE_OTHER);
             }
         }
