@@ -7,7 +7,7 @@ use App\Entity\Recipe;
 
 class FileManager implements FileManagerInterface
 {
-    public function moveFileInDirectory($img, string $path, Recette $recipe): void
+    public function moveFileInDirectory($img, string $path, Recipe $recipe): void
     {
         $fichier = $this->generateFileName($img);
 

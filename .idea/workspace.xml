@@ -4,45 +4,7 @@
     <list default="true" id="581ee74d-4c6c-44fd-b614-95b4990ce11d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/controllers/form-collection_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/controllers/form-collection_controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/17580.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/63a60024c0ecb.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/63a6002f29c4b.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/63a60041634c7.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/63a600b5805a6.heic" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/63a602c18a78f.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/63a602da24c78.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/63a602e25ac98.heic" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/63a602ebd4ee3.heic" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/63a6037a04283.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/63a604914b393.heic" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/63a604d37b001.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/63a604fe58c5e.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/63a6051151e16.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/63a60f5cf2eb5.heic" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/63a60f6e633f7.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/63a60f7ca44c1.heic" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/63a60fb06160c.heic" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/63a6141c94572.heic" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/63a72692dfd15.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/63a7269d899cd.heic" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/bg-food-transformed.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/bg-food.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/bg-food1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/bg-food2-transformed.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/bg-food2.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/bg-food3-transformed.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/bg-food3.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/bgRose.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/bggold.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/rsa.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/HomePageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomePageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/api/LikesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/api/LikesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/RecipeType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/RecipeType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/LikeManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/LikeManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/LikeManagerInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/LikeManagerInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/RecipeManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/RecipeManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/RecipeManagerInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/RecipeManagerInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/RecipeStepValueType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/RecipeStepValueType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/recette/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/recette/new.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -301,7 +263,10 @@
       <workItem from="1674339647217" duration="3951000" />
       <workItem from="1674421677880" duration="472000" />
       <workItem from="1674502012519" duration="3786000" />
-      <workItem from="1674760678284" duration="5873000" />
+      <workItem from="1674760678284" duration="6649000" />
+      <workItem from="1674813752619" duration="28000" />
+      <workItem from="1674813787931" duration="609000" />
+      <workItem from="1674814407084" duration="6377000" />
     </task>
     <servers />
   </component>

@@ -11,14 +11,16 @@ export default class extends Controller {
 
     addCollectionElement(event)
     {
-        this.indexValue++;
         const item = document.createElement('div');
-        const proto = `<p> Etape ${this.indexValue} : </p>` + this.prototypeValue.replace(/__name__/g, this.indexValue);
-        item.innerHTML = proto;
+        let proto = this.prototypeValue
+            .replace(/__name__/g, this.indexValue)
+        item.innerHTML = proto + "<hr style=\"width: 50%; margin-left: auto; margin-right: auto; color: black;\">";
         this.collectionContainerTarget.appendChild(item);
+
 
         //Delete button
         const deleteButton = document.createElement('button');
+        deleteButton.classList.add('btn', 'btn-danger', 'remove', 'btnMargin');
         deleteButton.innerHTML = 'Supprimer';
         deleteButton.addEventListener('click', () => {
             item.remove();
