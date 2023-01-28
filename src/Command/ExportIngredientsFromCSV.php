@@ -23,13 +23,13 @@ class ExportIngredientsFromCSV extends Command
     }
 
     // the command description shown when running "php bin/console list"
-    protected static $defaultDescription = 'Creates a new user.';
+    protected static $defaultDescription = 'Import ingredients from XLSX file';
 
     // ...
     protected function configure(): void
     {
         $this
-            ->setHelp('This command allows you to create a user...')
+            ->setHelp('This command allows you to import data of ingredients')
         ;
     }
 

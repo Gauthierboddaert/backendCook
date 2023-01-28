@@ -33,6 +33,10 @@
                     {{ form_label(form.creationTime, 'Indiquez le temps de création') }}
                     {{ form_widget(form.creationTime) }}
                 </div>
+                <div class="form-group">
+                    {{ form_label(form.numberOfPersons, 'Pour combien de personnes le plat est destinée') }}
+                    {{ form_widget(form.numberOfPersons) }}
+                </div>
                 <h2 class="text-center">Étape(s) : </h2>
                 <div {{ stimulus_controller('form-collection') }}
                         data-form-collection-index-value="{{ form.recipeStep|length > 0 ? form.recipeStep|last.vars.name + 1 : 0 }}"
