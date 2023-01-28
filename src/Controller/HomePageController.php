@@ -22,21 +22,18 @@ class HomePageController extends BaseController
     private RecipeRepository $recetteRepository;
     private RepositoryInterface $repositoryInterface;
     private ImageManagerInterface $imageInterface;
-    private string $image_directory;
     private RecipeManagerInterface $recipeManager;
 
     public function __construct(
         RecipeRepository      $recetteRepository,
         ImageManagerInterface $imageInterface,
         RepositoryInterface   $repositoryInterface,
-        string                $image_directory,
         RecipeManagerInterface $recipeManager
     )
     {
-        parent::__construct($recetteRepository, $imageInterface, $image_directory);
+        parent::__construct($recetteRepository, $imageInterface);
         $this->recetteRepository = $recetteRepository;
         $this->imageInterface = $imageInterface;
-        $this->image_directory = $image_directory;
         $this->repositoryInterface = $repositoryInterface;
         $this->recipeManager = $recipeManager;
     }

@@ -2,10 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="581ee74d-4c6c-44fd-b614-95b4990ce11d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/backendCookAPI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/backendCookAPI.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/controllers/form-collection_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/controllers/form-collection_controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/RecipeStepValueType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/RecipeStepValueType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/recette/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/recette/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/BaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/BaseController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/HomePageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomePageController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/FileManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/FileManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/FileManagerInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/FileManagerInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/ImageManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/ImageManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/ImageManagerInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/ImageManagerInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home_page/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home_page/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,6 +193,7 @@
       <path value="$PROJECT_DIR$/vendor/gedmo/doctrine-extensions" />
       <path value="$PROJECT_DIR$/vendor/symfony/webpack-encore-bundle" />
       <path value="$PROJECT_DIR$/vendor/symfony/ux-autocomplete" />
+      <path value="$PROJECT_DIR$/vendor/imagine/imagine" />
     </include_path>
   </component>
   <component name="ProjectId" id="2IRjFdau7fxSURpAylfNzryjg5c" />
@@ -266,7 +276,8 @@
       <workItem from="1674760678284" duration="6649000" />
       <workItem from="1674813752619" duration="28000" />
       <workItem from="1674813787931" duration="609000" />
-      <workItem from="1674814407084" duration="6377000" />
+      <workItem from="1674814407084" duration="12681000" />
+      <workItem from="1674904606015" duration="5825000" />
     </task>
     <servers />
   </component>
