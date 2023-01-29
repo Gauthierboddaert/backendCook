@@ -17,12 +17,11 @@ class ExporterCSV
     {
 
         $data = [];
-        $csvFile = $this->image_directory.'ingredients.xlsx';
+        $csvFile = $this->image_directory . 'ingredients.xlsx';
         $spreadsheet = IOFactory::load($csvFile);
         $worksheet = $spreadsheet->getActiveSheet();
 
-        foreach ($worksheet->getRowIterator() as $row)
-        {
+        foreach ($worksheet->getRowIterator() as $row) {
             $lineData = [];
 
             // Parcours des cellules de la ligne en cours
@@ -36,4 +35,6 @@ class ExporterCSV
         array_shift($data);
         return $data;
     }
+
+
 }

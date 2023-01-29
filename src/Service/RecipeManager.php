@@ -46,6 +46,7 @@ class RecipeManager implements RecipeManagerInterface
     {
         //set the user here like this I don't need to show it in the form
         $recipe->setUsers($user);
+        dd($recipe);
         $this->recipeRepository->save($recipe, true);
 
         //allow to move image in directory of project uploads/image_recipe
