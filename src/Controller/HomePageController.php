@@ -43,7 +43,7 @@ class HomePageController extends BaseController
     public function index(Request $request): Response
     {
         return $this->render('home_page/index.html.twig', [
-            'bestThreeLikePublication' => $this->recetteRepository->findTopThreeBestLikedRecipe(),
+            'bestThreeLikePublication' => dd($this->recetteRepository->findTopThreeBestLikedRecipe()),
             'recettes' => $this->recetteRepository->findThreeLastRecette(),
             'form' => $this->createForm(SearchType::class, null, ['action' => $this->generateUrl('app_homepage_search')])->createView()
         ]);
@@ -131,13 +131,9 @@ class HomePageController extends BaseController
     #[Route('/recette', name: 'app_homepage_recette', methods: ['GET'])]
     public function findAllRecette(PaginatorInterface $paginator, Request $request): Response
     {
-        $paginator = $paginator->paginate(
-            $this->repositoryInterface->findAll(),
-            $request->query->getInt('page', 1),
-            $request->query->getInt('limit', 10)
-        );
         return $this->render('recette/index.html.twig', [
-            'recettes' => $paginator ,
+            'recettes' => $this->recipeManager->paginatorForTenRecipe($request),
+            'likeByRecipe' => '',
             'form' => $this->createForm(SearchType::class, null, ['action' => $this->generateUrl('app_homepage_search')])->createView()
         ]);
     }

@@ -5,13 +5,12 @@ namespace App\Service;
 use App\Entity\Category;
 use App\Entity\Recipe;
 use App\Entity\User;
-use App\Form\RecipeType;
-use App\Form\SearchType;
 use App\Repository\RecipeRepository;
+use App\Repository\RepositoryInterface;
+use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\RouterInterface;
 
 class RecipeManager implements RecipeManagerInterface
@@ -21,12 +20,16 @@ class RecipeManager implements RecipeManagerInterface
     private RecipeRepository $recipeRepository;
     private ImageManagerInterface $imageManager;
     private string $image_directory;
+    private PaginatorInterface $paginator;
+    private RepositoryInterface $repository;
 
     public function __construct
     (
         RouterInterface $router,
         RecipeRepository $recipeRepository,
         ImageManagerInterface $imageManager,
+        PaginatorInterface $paginator,
+        RepositoryInterface $repository,
         string $image_directory
     )
     {
@@ -34,6 +37,8 @@ class RecipeManager implements RecipeManagerInterface
         $this->recipeRepository = $recipeRepository;
         $this->imageManager = $imageManager;
         $this->image_directory = $image_directory;
+        $this->paginator = $paginator;
+        $this->repository = $repository;
     }
 
     public function setNewCategory(Category $category , Recipe $recette) : void
@@ -53,6 +58,16 @@ class RecipeManager implements RecipeManagerInterface
         $this->imageManager->downloadImage($form, $recipe,$this->recipeRepository,$this->image_directory);
 
         return true;
+    }
+
+
+    public function paginatorForTenRecipe(Request $request) : SlidingPagination
+    {
+        return $this->paginator->paginate(
+            $this->repository->findAll(),
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 10)
+        );
     }
 
 
