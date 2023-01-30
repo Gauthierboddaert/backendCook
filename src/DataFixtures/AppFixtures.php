@@ -51,7 +51,7 @@ class AppFixtures extends Fixture
             $recipe->setCreationTime($i);
             $recipe->setCreatedAt(new \DateTime());
             $recipe->setUpdatedAt(new \DateTime());
-
+            $recipe->setNumberOfPersons(1);
             $recipe->setUsers($user);
             $recipe->setImage($image);
             $recipe->addCategory($category);

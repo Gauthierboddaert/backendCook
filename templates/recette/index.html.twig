@@ -32,9 +32,22 @@
         </section>
         <hr style="width: 50%; margin-left: auto; margin-right: auto; color: black;">
     {% endfor %}
-
+    <div class="pagination">{{ knp_pagination_render(recettes) }}</div>
 
     <style>
+        .pagination{
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .pagination span{
+            padding: 0px 2px;
+            font-family: 'Red Hat Text', sans-serif;
+            font-size: 17px;
+        }
+
         .buttonCRUD{
             width: 100%;
             display: flex;
@@ -81,6 +94,7 @@
             background: white;
             font-family: 'Red Hat Text', sans-serif;
         }
+
 
         .containerRecipe{
             width: 100%;

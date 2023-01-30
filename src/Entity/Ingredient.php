@@ -21,6 +21,15 @@ class Ingredient
     #[ORM\ManyToMany(targetEntity: Recipe::class, inversedBy: 'ingredients')]
     private Collection $recette;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $proteines = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $lipides = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $glucides = null;
+
     public function __construct()
     {
         $this->recette = new ArrayCollection();
@@ -68,6 +77,42 @@ class Ingredient
     public function removeRecette(Recipe $recette): self
     {
         $this->recette->removeElement($recette);
+
+        return $this;
+    }
+
+    public function getProteines(): ?int
+    {
+        return $this->proteines;
+    }
+
+    public function setProteines(?int $proteines): self
+    {
+        $this->proteines = $proteines;
+
+        return $this;
+    }
+
+    public function getLipides(): ?int
+    {
+        return $this->lipides;
+    }
+
+    public function setLipides(?int $lipides): self
+    {
+        $this->lipides = $lipides;
+
+        return $this;
+    }
+
+    public function getGlucides(): ?int
+    {
+        return $this->glucides;
+    }
+
+    public function setGlucides(?int $glucides): self
+    {
+        $this->glucides = $glucides;
 
         return $this;
     }

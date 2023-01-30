@@ -17,7 +17,7 @@ class ExporterCSV
     {
 
         $data = [];
-        $csvFile = $this->image_directory . 'ingredients.xlsx';
+        $csvFile = $this->image_directory . 'ingredient.xlsx';
         $spreadsheet = IOFactory::load($csvFile);
         $worksheet = $spreadsheet->getActiveSheet();
 
