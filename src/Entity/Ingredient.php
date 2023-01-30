@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\IngredientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: IngredientRepository::class)]
@@ -22,13 +23,13 @@ class Ingredient
     private Collection $recette;
 
     #[ORM\Column(nullable: true)]
-    private ?int $proteines = null;
+    private ?float $proteines = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $lipides = null;
+    private ?float $lipides = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $glucides = null;
+    private ?float $glucides = null;
 
     public function __construct()
     {
@@ -81,39 +82,40 @@ class Ingredient
         return $this;
     }
 
-    public function getProteines(): ?int
+    public function getProteines(): ?float
     {
         return $this->proteines;
     }
 
-    public function setProteines(?int $proteines): self
+    public function setProteines(?float $proteines): self
     {
         $this->proteines = $proteines;
 
         return $this;
     }
 
-    public function getLipides(): ?int
+    public function getLipides(): ?float
     {
         return $this->lipides;
     }
 
-    public function setLipides(?int $lipides): self
+    public function setLipides(?float $lipides): self
     {
         $this->lipides = $lipides;
 
         return $this;
     }
 
-    public function getGlucides(): ?int
+    public function getGlucides(): ?float
     {
         return $this->glucides;
     }
 
-    public function setGlucides(?int $glucides): self
+    public function setGlucides(?float $glucides): self
     {
         $this->glucides = $glucides;
 
         return $this;
     }
+
 }

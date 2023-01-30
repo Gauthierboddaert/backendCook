@@ -22,9 +22,9 @@ class IngredientManager
                 try{
                     $ingredient = new Ingredient();
                     $ingredient->setName($row[0]);
-                    $ingredient->setProteines(intval($row[1]));
-                    $ingredient->setGlucides(intval($row[2]));
-                    $ingredient->setLipides(intval($row[3]));
+                    (!is_string($row[1])) ? $ingredient->setProteines($row[1]) : $ingredient->setProteines(intval(($row[1])));
+                    (!is_string($row[2])) ? $ingredient->setGlucides($row[2]) : $ingredient->setGlucides(intval($row[2]));
+                    (!is_string($row[3])) ? $ingredient->setLipides($row[3]) : $ingredient->setLipides(intval($row[3]));
                     $this->entityManager->persist($ingredient);
                 }catch (\Exception $e){
                     return false;
@@ -36,5 +36,12 @@ class IngredientManager
         $this->entityManager->flush();
 
         return true;
+    }
+
+    private function checkdata($value)
+    {
+        $str = trim($value, "< ");
+        $float = floatval(str_replace(",", ".", $str));
+        return $float;
     }
 }
