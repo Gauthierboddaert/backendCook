@@ -17,27 +17,24 @@ class FileManager implements FileManagerInterface
 
     public function moveFileInDirectory(UploadedFile $img, Recipe $recipe): void
     {
-        if(null !== $img)
-        {
-            $fichier = $this->generateFileName($img);
-            $img->move(
-                $this->image_directory, $fichier
-            );
+        $fichier = $this->generateFileName(uniqid(), $img->guessExtension());
+        $img->move(
+            $this->image_directory, $fichier
+        );
 
-            if($img->getClientOriginalExtension() == 'HEIC'){
-                $this->convertImageByExtension($img, $fichier);
-            }
-
-
-            $fileImage = new Image();
-            $fileImage->setName($fichier);
-            $recipe->setImage($fileImage);
+        if($img->getClientOriginalExtension() == 'HEIC'){
+            $this->convertImageByExtension($img, $fichier);
         }
+
+
+        $fileImage = new Image();
+        $fileImage->setName($fichier);
+        $recipe->setImage($fileImage);
     }
 
-    public function generateFileName($img) : ?string
+    public function generateFileName(string $fileName, string $extension) : ?string
     {
-         return uniqid().".".$img->guessExtension();
+         return $fileName.".".$extension;
     }
 
 

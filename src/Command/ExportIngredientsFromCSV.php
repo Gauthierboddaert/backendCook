@@ -2,8 +2,7 @@
 
 namespace App\Command;
 
-use App\Entity\Ingredient;
-use App\Service\ExporterCSV;
+use App\Service\ExporterManager;
 use App\Service\IngredientManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -14,13 +13,13 @@ use Symfony\Component\Console\Output\OutputInterface;
 #[AsCommand(name: 'app:import-ingredients')]
 class ExportIngredientsFromCSV extends Command
 {
-    private ExporterCSV $exporterCSV;
+    private ExporterManager $exporterManager;
     private EntityManagerInterface $entityManager;
     private IngredientManager $ingredientManager;
-    public function __construct(ExporterCSV $exporterCSV,EntityManagerInterface $entityManager,IngredientManager $ingredientManager, $name = null)
+    public function __construct(ExporterManager $exporterManager,EntityManagerInterface $entityManager,IngredientManager $ingredientManager, $name = null)
     {
         parent::__construct($name);
-        $this->exporterCSV = $exporterCSV;
+        $this->exporterManager = $exporterManager;
         $this->entityManager = $entityManager;
         $this->ingredientManager = $ingredientManager;
     }
@@ -38,7 +37,7 @@ class ExportIngredientsFromCSV extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $data = $this->exporterCSV->getDataFromFile();
+        $data = $this->exporterManager->export();
         if($this->ingredientManager->addIngredientsFromXlsx($data))
         {
             return Command::SUCCESS;

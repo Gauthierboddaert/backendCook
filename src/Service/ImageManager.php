@@ -45,7 +45,7 @@ class ImageManager implements ImageManagerInterface
 
     public function resize(UploadedFile $filename): bool
     {
-        $image = $this->fileManager->generateFileName($filename);
+        $image = $this->fileManager->generateFileName(uniqid(),$filename->guessExtension());
         list($iwidth, $iheight) = getimagesize($filename);
 
         if($iheight or $iwidth === null)

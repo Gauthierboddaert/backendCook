@@ -8,20 +8,20 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 class ImporterManager extends Importer
 {
     private string $import_directory;
-    private ExporterCSV $exporterCSV;
+    private ExporterManager $exporterManager;
     private OpenAiManager $openAiManager;
 
-    public function __construct(string $import_directory, ExporterCSV $exporterCSV, OpenAiManager $openAiManager)
+    public function __construct(string $import_directory, ExporterManager $exporterManager, OpenAiManager $openAiManager)
     {
         $this->import_directory = $import_directory;
-        $this->exporterCSV = $exporterCSV;
+        $this->exporterManager = $exporterManager;
         $this->openAiManager = $openAiManager;
     }
 
     public function import(): void
     {
         $proteines = [];
-        $ingredients = $this->exporterCSV->getDataFromFile();
+        $ingredients = $this->exporterManager->export();
 
         //fill $proteines thanks to OpenAI API
         $this->getProteines($proteines, $ingredients);

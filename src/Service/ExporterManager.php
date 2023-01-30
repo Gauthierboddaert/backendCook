@@ -4,20 +4,23 @@ namespace App\Service;
 
 use League\Csv\Reader;
 use PhpOffice\PhpSpreadsheet\IOFactory;
+use App\Service\FileManager;
 
-class ExporterCSV
+class ExporterManager extends Exporter
 {
-    private string $image_directory;
-    public function __construct(string $image_directory)
+    private string $export_directory;
+    private FileManager $fileManager;
+    public function __construct(string $export_directory, FileManager $fileManager)
     {
-        $this->image_directory = $image_directory;
+        $this->export_directory = $export_directory;
+        $this->fileManager = $fileManager;
+
     }
 
-    public function getDataFromFile() : array
+    public function export(): ?array
     {
-
         $data = [];
-        $csvFile = $this->image_directory . 'ingredient.xlsx';
+        $csvFile = $this->export_directory . 'ingredient.xlsx';
         $spreadsheet = IOFactory::load($csvFile);
         $worksheet = $spreadsheet->getActiveSheet();
 
@@ -35,6 +38,4 @@ class ExporterCSV
         array_shift($data);
         return $data;
     }
-
-
 }
