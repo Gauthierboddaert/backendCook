@@ -22,21 +22,18 @@ class HomePageController extends BaseController
     private RecipeRepository $recetteRepository;
     private RepositoryInterface $repositoryInterface;
     private ImageManagerInterface $imageInterface;
-    private string $image_directory;
     private RecipeManagerInterface $recipeManager;
 
     public function __construct(
         RecipeRepository      $recetteRepository,
         ImageManagerInterface $imageInterface,
         RepositoryInterface   $repositoryInterface,
-        string                $image_directory,
         RecipeManagerInterface $recipeManager
     )
     {
-        parent::__construct($recetteRepository, $imageInterface, $image_directory);
+        parent::__construct($recetteRepository, $imageInterface);
         $this->recetteRepository = $recetteRepository;
         $this->imageInterface = $imageInterface;
-        $this->image_directory = $image_directory;
         $this->repositoryInterface = $repositoryInterface;
         $this->recipeManager = $recipeManager;
     }
@@ -74,18 +71,19 @@ class HomePageController extends BaseController
     public function new(Request $request): Response
     {
 
-        $recette = new Recipe();
-        $form = $this->createForm(RecipeType::class, $recette);
+        $user = $this->getUser();
+        $recipe = new Recipe();
+        $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if($this->recipeManager->createNewRecipe($recette, $form)){
+            if($this->recipeManager->createNewRecipe($recipe,$user, $form)){
                 return $this->redirectToRoute('app_home_page_index', [], Response::HTTP_SEE_OTHER);
             }
         }
 
         return $this->renderForm('recette/new.html.twig', [
-            'recette' => $recette,
+            'recette' => $recipe,
             'form' => $form
         ]);
     }

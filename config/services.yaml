@@ -10,7 +10,9 @@ services:
     # default configuration for services in *this* file
     _defaults:
         bind:
-            $image_directory: '%kernel.project_dir%/public/uploads'
+            $image_directory: '%kernel.project_dir%/public/uploads/'
+            $import_directory: '%kernel.project_dir%/public/import/'
+            $apiKey: '%env(API_KEY)%'
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 

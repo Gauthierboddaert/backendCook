@@ -12,8 +12,8 @@
     {% for recette in recettes %}
         <section class="containerRecipe">
             <div class="recipe">
-                <div class="recipeLeftPart">
-                    <img src="{{ asset('/uploads/' ~ recette.image )  }}" alt="mon image">
+                <div style="background-image: url({{ asset('/uploads/' ~ recette.image ) }});" class="recipeLeftPart">
+                    {# <img src="{{ asset('/uploads/' ~ recette.image )  }}" alt="mon image"> #}
                 </div>
                 <div class="recipeRightPart">
                     <h4>{{ recette.name }}</h4>
@@ -54,7 +54,10 @@
             display: flex;
             width: 35%;
             height: 100%;
-            background: black;
+            background: white;
+            border-right: solid 1px black;
+            background-size: cover;
+            background-position: center;
         }
 
         .recipeLeftPart img{
@@ -63,6 +66,7 @@
             min-width: 100%;
             border-right: solid 1px black;
             min-height: 100%;
+            image-rendering: high-quality;
 
         }
 

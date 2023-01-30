@@ -16,17 +16,14 @@ abstract class BaseController extends AbstractController
 {
     private RecipeRepository $recetteRepository;
     private ImageManagerInterface $imageInterface;
-    private string $image_directory;
 
     public function __construct(
         RecipeRepository      $recetteRepository,
         ImageManagerInterface $imageInterface,
-        string                $image_directory
     )
     {
         $this->recetteRepository = $recetteRepository;
         $this->imageInterface = $imageInterface;
-        $this->image_directory = $image_directory;
     }
 
     public function searchRecette(Request $request, string $redirect) : mixed

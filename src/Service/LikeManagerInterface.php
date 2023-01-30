@@ -8,5 +8,5 @@ use Symfony\Component\Form\FormInterface;
 
 interface LikeManagerInterface
 {
-    public function LikeRecette(int $id) : void;
+    public function LikeRecipe(int $id) : void;
 }

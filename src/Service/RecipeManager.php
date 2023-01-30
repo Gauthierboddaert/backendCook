@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Entity\Category;
 use App\Entity\Recipe;
+use App\Entity\User;
 use App\Form\RecipeType;
 use App\Form\SearchType;
 use App\Repository\RecipeRepository;
@@ -41,8 +42,11 @@ class RecipeManager implements RecipeManagerInterface
         $recette->addCategory($category);
     }
 
-    public function createNewRecipe(Recipe $recipe, FormInterface $form ) : bool
+    public function createNewRecipe(Recipe $recipe,User $user, FormInterface $form ) : bool
     {
+        //set the user here like this I don't need to show it in the form
+        $recipe->setUsers($user);
+        dd($recipe);
         $this->recipeRepository->save($recipe, true);
 
         //allow to move image in directory of project uploads/image_recipe

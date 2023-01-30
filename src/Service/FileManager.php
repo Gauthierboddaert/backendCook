@@ -4,18 +4,30 @@ namespace App\Service;
 
 use App\Entity\Image;
 use App\Entity\Recipe;
+use Imagine\Gd\Imagine;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class FileManager implements FileManagerInterface
 {
-    public function moveFileInDirectory($img, string $path, Recette $recipe): void
+    private string $image_directory;
+    public function __construct(string $image_directory)
     {
-        $fichier = $this->generateFileName($img);
+        $this->image_directory = $image_directory;
+    }
 
-        if(null === $fichier)
+    public function moveFileInDirectory(UploadedFile $img, Recipe $recipe): void
+    {
+        if(null !== $img)
         {
+            $fichier = $this->generateFileName($img);
             $img->move(
-                $path, $fichier
+                $this->image_directory, $fichier
             );
+
+            if($img->getClientOriginalExtension() == 'HEIC'){
+                $this->convertImageByExtension($img, $fichier);
+            }
+
 
             $fileImage = new Image();
             $fileImage->setName($fichier);
@@ -23,8 +35,22 @@ class FileManager implements FileManagerInterface
         }
     }
 
-    private function generateFileName($img) : ?string
+    public function generateFileName($img) : ?string
     {
          return uniqid().".".$img->guessExtension();
+    }
+
+
+    public function convertImageByExtension(UploadedFile $img, string $fileName = '')
+    {
+        sleep(3);
+
+        $imagine = new Imagine();
+        $file = new \SplFileInfo($this->image_directory. '63d51f9ca878d.heic');
+        $image = $imagine->open($file);
+        dd($file, $image);
+        $image->save($this->getParameter('images_directory') . '/' . $fileName . '.png');
+        dd('here');
+
     }
 }

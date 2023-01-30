@@ -50,11 +50,6 @@ class RecipeType extends AbstractType
                 'mapped' => false,
                 'required' => false
             ])
-            ->add('users', EntityType::class, [
-                'class' => User::class,
-                'data' => $this->security->getUser(),
-                'mapped' => false
-            ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'name',
@@ -83,11 +78,25 @@ class RecipeType extends AbstractType
                     '2 heures' => 120
                 ]
             ])
+            ->add('numberOfPersons', ChoiceType::class, [
+                'choices' => [
+                    '1 personne' => 1,
+                    '2 personnes' => 2,
+                    '3 personnes' => 3,
+                    '4 personnes' => 4,
+                    '5 personnes' => 5,
+                    '6 personnes' => 6,
+                    '7 personnes' => 7,
+                    '8 personnes' => 8,
+                    '9 personnes' => 9,
+                    '10 personnes' => 10
+                ]
+            ])
             ->add('recipeStep', CollectionType::class, [
                 'entry_type' => RecipeStepValueType::class,
                 'data' => $recipeStepsValues,
                 'allow_add' => true,
-                'allow_delete' => true
+                'allow_delete' => true,
             ])
         ;
     }

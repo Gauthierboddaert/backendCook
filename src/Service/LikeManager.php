@@ -24,7 +24,7 @@ class LikeManager implements LikeManagerInterface
         $this->likeRepositoryInterface = $likeRepositoryInterface;
         $this->likeRepository = $likeRepository;
     }
-    public function LikeRecette(int $id) : void
+    public function LikeRecipe(int $id) : void
     {
         $recette = $this->recetteRepositoryInterface->findOneBy([
             'id' => $id,

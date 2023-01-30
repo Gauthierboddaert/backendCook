@@ -58,6 +58,9 @@ class Recipe
     #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: RecipeStep::class,cascade: ['persist', 'remove'])]
     private Collection $recipeStep;
 
+    #[ORM\Column]
+    private ?int $numberOfPersons = null;
+
 
     public function __toString(): string
     {
@@ -274,6 +277,18 @@ class Recipe
                 $recipeStep->setRecipe(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNumberOfPersons(): ?int
+    {
+        return $this->numberOfPersons;
+    }
+
+    public function setNumberOfPersons(int $numberOfPersons): self
+    {
+        $this->numberOfPersons = $numberOfPersons;
 
         return $this;
     }
