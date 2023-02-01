@@ -3,12 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="581ee74d-4c6c-44fd-b614-95b4990ce11d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Command/ExportIngredientsFromCSV.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Command/ExportIngredientsFromCSV.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/ExporterCSV.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/ExporterManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/FileManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/FileManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/HomePageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomePageController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Service/ImageManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/ImageManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/ImporterManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/ImporterManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/RecipeManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/RecipeManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,7 +216,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/gauthierboddaert/Desktop/Projet/backendCook/public/export",
+    "last_opened_file_path": "/Users/gauthierboddaert/Desktop/Projet/backendCook/public/user",
     "nodejs_package_manager_path": "npm",
     "php.override.implement.member.chooser.php.doc": "NONE",
     "settings.editor.selected.configurable": "preferences.pluginManager",
@@ -223,11 +225,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/user" />
+      <recent name="$PROJECT_DIR$/public/uploads" />
       <recent name="$PROJECT_DIR$/public/export" />
       <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/src/Command" />
-      <recent name="$PROJECT_DIR$/public/uploads" />
-      <recent name="$PROJECT_DIR$/src/Form" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/templates/recette" />
@@ -285,7 +287,9 @@
       <workItem from="1674814407084" duration="12681000" />
       <workItem from="1674904606015" duration="32971000" />
       <workItem from="1675068704060" duration="8669000" />
-      <workItem from="1675092891029" duration="2092000" />
+      <workItem from="1675092891029" duration="2129000" />
+      <workItem from="1675156940357" duration="1245000" />
+      <workItem from="1675248782635" duration="12970000" />
     </task>
     <servers />
   </component>

@@ -3,23 +3,40 @@
 namespace App\Controller;
 
 use App\Repository\RecipeRepository;
+use App\Service\UserManager;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class UserController extends AbstractController
 {
     private RecipeRepository $recetteRepository;
-    public function __construct(RecipeRepository $recetteRepository)
+    private UserManager $userManager;
+    public function __construct(RecipeRepository $recetteRepository, UserManager $userManager)
     {
         $this->recetteRepository = $recetteRepository;
+        $this->userManager = $userManager;
     }
 
-    #[Route('/user/favories', name: 'app_user_favories')]
-    public function index(): Response
+    #[Route('/profil', name: 'app_user_index')]
+    public function index(AuthenticationUtils $authenticationUtils): Response
     {
-        return $this->render('favoris/index.html.twig', [
-            'favoris' => $this->recetteRepository->findFavoriesByUser(),
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        if(null == $this->getUser())
+        {
+            return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+
+        }
+
+        return $this->render('user/index.html.twig', [
+            'user' => $this->getUser(),
+            'age' => $this->userManager->getAge($this->getUser())
         ]);
     }
 }

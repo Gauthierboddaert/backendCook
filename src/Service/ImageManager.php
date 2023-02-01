@@ -33,7 +33,6 @@ class ImageManager implements ImageManagerInterface
         $image = $form->get('images') ->getData();
         foreach($image as $img){
             if(ConvertHelper::ConvertToMo($img->getSize()) > 1){
-                dd('here');
                 $this->resize($img);
             }
 

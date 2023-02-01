@@ -43,7 +43,7 @@ class HomePageController extends BaseController
     public function index(Request $request): Response
     {
         return $this->render('home_page/index.html.twig', [
-            'bestThreeLikePublication' => dd($this->recetteRepository->findTopThreeBestLikedRecipe()),
+            'bestThreeLikePublication' => $this->recetteRepository->findTopThreeBestLikedRecipe(),
             'recettes' => $this->recetteRepository->findThreeLastRecette(),
             'form' => $this->createForm(SearchType::class, null, ['action' => $this->generateUrl('app_homepage_search')])->createView()
         ]);

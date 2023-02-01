@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use App\Entity\Category;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -49,6 +50,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Like::class)]
     private Collection $likes;
 
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Image $image = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $dateOfBirth = null;
 
     public function __construct()
     {
@@ -243,4 +249,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-}
+    public function getImage(): ?Image
+    {
+        return $this->image;
+    }
+
+    public function setImage(?Image $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getDateOfBirth(): ?\DateTimeInterface
+    {
+        return $this->dateOfBirth;
+    }
+
+    public function setDateOfBirth(?\DateTimeInterface $dateOfBirth): self
+    {
+        $this->dateOfBirth = $dateOfBirth;
+
+        return $this;
+    }
+    }

@@ -86,12 +86,17 @@ class AppFixtures extends Fixture
         $user->setLastname('Boddaert');
         $user->setPassword($this->userPasswordHasher->hashPassword($user, "coucou"));
         $user->setRoles(['ROLE_ADMIN']);
+        $image = new Image();
+        $image->setName('moi.JPG');
+        $user->setImage($image);
+        $user->setDateOfBirth(new \DateTime());
 
         $admin->setEmail('gboddaert@insitaction.com');
         $admin->setName('Gauthier');
         $admin->setLastname('Boddaert');
         $admin->setPassword($this->userPasswordHasher->hashPassword($admin, "coucou"));
         $admin->setRoles(['ROLE_ADMIN']);
+        $admin->setDateOfBirth(new \DateTime());
 
         $manager->persist($user);
         $manager->persist($admin);
