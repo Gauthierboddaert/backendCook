@@ -5,48 +5,12 @@
 {% block body %}
 
     {{ include('user/_headerProfil.html.twig') }}
-    <section class="typeOfRecipeByUser">
-        <div class="containerRecipeUser">
-            {% for recette in recettes %}
-                <div class="recipe">
-                    <div class="recipeImg">
-
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    </section>
-
-
+    {{ include('user/_userRecipe.html.twig') }}
 
     <style>
+        .chooseFilter div a:first-child{
+            color: #ff4269;
+        }
+    </style>
 
-        .recipe{
-            width: 414px;
-            height: 300px;
-            background: black;
-            margin-bottom: 50px;
-        }
-        .recipeImg{
-            width: 430px;
-            height: 30px;
-        }
-        .containerRecipeUser{
-            width: 92%;
-            background: red;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-wrap: wrap;
-            height: 30vh;
-        }
-
-        .typeOfRecipeByUser{
-            background-color: #F0F2F5;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            height: 100vh;
-        }
-</style>
 {% endblock %}

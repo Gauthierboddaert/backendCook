@@ -20,20 +20,20 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/')]
 class HomePageController extends BaseController
 {
-    private RecipeRepository $recetteRepository;
+    private RecipeRepository $recipeRepository;
     private RepositoryInterface $repositoryInterface;
     private ImageManagerInterface $imageInterface;
     private RecipeManagerInterface $recipeManager;
 
     public function __construct(
-        RecipeRepository      $recetteRepository,
+        RecipeRepository      $recipeRepository,
         ImageManagerInterface $imageInterface,
         RepositoryInterface   $repositoryInterface,
         RecipeManagerInterface $recipeManager
     )
     {
-        parent::__construct($recetteRepository, $imageInterface);
-        $this->recetteRepository = $recetteRepository;
+        parent::__construct($recipeRepository, $imageInterface);
+        $this->recipeRepository = $recipeRepository;
         $this->imageInterface = $imageInterface;
         $this->repositoryInterface = $repositoryInterface;
         $this->recipeManager = $recipeManager;
@@ -43,8 +43,8 @@ class HomePageController extends BaseController
     public function index(Request $request): Response
     {
         return $this->render('home_page/index.html.twig', [
-            'bestThreeLikePublication' => $this->recetteRepository->findTopThreeBestLikedRecipe(),
-            'recettes' => $this->recetteRepository->findThreeLastRecette(),
+            'bestThreeLikePublication' => $this->recipeRepository->findTopThreeBestLikedRecipe(),
+            'recettes' => $this->recipeRepository->findThreeLastRecette(),
             'form' => $this->createForm(SearchType::class, null, ['action' => $this->generateUrl('app_homepage_search')])->createView()
         ]);
     }
@@ -61,7 +61,7 @@ class HomePageController extends BaseController
         }
 
         return $this->render('Search/index.html.twig', [
-            'recettes' => null === $recipe->getName() ? [] : $this->recetteRepository->filterByRecette($recipe->getName()),
+            'recettes' => null === $recipe->getName() ? [] : $this->recipeRepository->filterByRecette($recipe->getName()),
             'name' => $recipe->getName(),
             'form' => $form->createView()
         ]);
@@ -105,9 +105,9 @@ class HomePageController extends BaseController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $this->recetteRepository->save($recette, true);
+            $this->recipeRepository->save($recette, true);
             //move the image
-            $this->imageInterface->downloadImage($form, $recette,$this->recetteRepository,$this->image_directory);
+            $this->imageInterface->downloadImage($form, $recette,$this->recipeRepository,$this->image_directory);
             return $this->redirectToRoute('app_home_page_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -121,7 +121,7 @@ class HomePageController extends BaseController
     public function delete(Request $request, Recipe $recette): Response
     {
         if ($this->isCsrfTokenValid('delete'.$recette->getId(), $request->request->get('_token'))) {
-            $this->recetteRepository->remove($recette, true);
+            $this->recipeRepository->remove($recette, true);
         }
 
         return $this->redirectToRoute('app_home_page_index', [], Response::HTTP_SEE_OTHER);
@@ -132,7 +132,7 @@ class HomePageController extends BaseController
     public function findAllRecette(PaginatorInterface $paginator, Request $request): Response
     {
         return $this->render('recette/index.html.twig', [
-            'recettes' => $this->recipeManager->paginatorForTenRecipe($request),
+            'recettes' => $this->recipeManager->paginatorForTenRecipe($request, $this->recipeRepository->findRecipeByOrder()),
             'likeByRecipe' => '',
             'form' => $this->createForm(SearchType::class, null, ['action' => $this->generateUrl('app_homepage_search')])->createView()
         ]);

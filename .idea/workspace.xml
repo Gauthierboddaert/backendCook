@@ -5,6 +5,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/HomePageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomePageController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/RecipeRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/RecipeRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/RecipeManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/RecipeManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/_headerProfil.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/_headerProfil.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/user/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -285,7 +288,7 @@
       <workItem from="1675092891029" duration="2129000" />
       <workItem from="1675156940357" duration="1245000" />
       <workItem from="1675248782635" duration="13782000" />
-      <workItem from="1675335281932" duration="3896000" />
+      <workItem from="1675335281932" duration="9078000" />
     </task>
     <servers />
   </component>

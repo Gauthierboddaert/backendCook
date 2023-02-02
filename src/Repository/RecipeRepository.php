@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Recipe;
+use App\Entity\User;
 use App\Service\Helper\CriteriaHelper;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -73,19 +75,6 @@ class RecipeRepository extends ServiceEntityRepository implements RepositoryInte
                     ->getResult();
     }
 
-
-    public function UpdateLike(Recipe $recette, bool $isLiked)
-    {
-        return $this->createQueryBuilder('recette')
-            ->innerJoin('recette.like', 'like')
-            ->update()
-            ->where('like.recette = :recette')
-            ->setParameter(':recette', $recette)
-            ->set('like.isLike', $isLiked)
-            ->getQuery()
-            ->execute();
-    }
-
     public function findTopThreeBestLikedRecipe() : ?array
     {
         return $this->createQueryBuilder('recette')
@@ -105,5 +94,21 @@ class RecipeRepository extends ServiceEntityRepository implements RepositoryInte
                 ->orderBy('r.id', 'DESC')
                 ->getQuery()
                 ->getResult();
+    }
+
+    public function findLikesByUser(User $user) : ?array
+    {
+        return $this->createQueryBuilder('r')
+                    ->addCriteria(self::createRecipeByUser($user))
+                    ->orderBy('r.id', 'DESC')
+                    ->getQuery()
+                    ->getResult();
+    }
+
+    public static function createRecipeByUser(User $user) : Criteria
+    {
+        return Criteria::create()->andWhere(
+            Criteria::expr()->eq('r.users', $user)
+        );
     }
 }
