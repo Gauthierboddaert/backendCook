@@ -12,11 +12,11 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class UserController extends AbstractController
 {
-    private RecipeRepository $recetteRepository;
+    private RecipeRepository $recipeRepository;
     private UserManager $userManager;
-    public function __construct(RecipeRepository $recetteRepository, UserManager $userManager)
+    public function __construct(RecipeRepository $recipeRepository, UserManager $userManager)
     {
-        $this->recetteRepository = $recetteRepository;
+        $this->recipeRepository = $recipeRepository;
         $this->userManager = $userManager;
     }
 
@@ -36,6 +36,7 @@ class UserController extends AbstractController
 
         return $this->render('user/index.html.twig', [
             'user' => $this->getUser(),
+            'recettes' => $this->recipeRepository->findTenLastObject(),
             'age' => $this->userManager->getAge($this->getUser())
         ]);
     }

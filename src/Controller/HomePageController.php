@@ -52,8 +52,8 @@ class HomePageController extends BaseController
     #[Route('/search', name: 'app_homepage_search', methods: ['GET', 'POST'])]
     public function search(Request $request): Response
     {
-        $recette = new Recipe();
-        $form = $this->createForm(SearchType::class, $recette)->handleRequest($request);
+        $recipe = new Recipe();
+        $form = $this->createForm(SearchType::class, $recipe)->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var Recipe $recipe */
@@ -62,7 +62,7 @@ class HomePageController extends BaseController
 
         return $this->render('Search/index.html.twig', [
             'recettes' => null === $recipe->getName() ? [] : $this->recetteRepository->filterByRecette($recipe->getName()),
-            'name' => $recette->getName(),
+            'name' => $recipe->getName(),
             'form' => $form->createView()
         ]);
     }
