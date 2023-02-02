@@ -65,7 +65,7 @@ class RecipeManager implements RecipeManagerInterface
     public function paginatorForTenRecipe(Request $request) : SlidingPagination
     {
         return $this->paginator->paginate(
-            $this->repository->findAll(),
+            $this->repository->findRecipeByOrder(),
             $request->query->getInt('page', 1),
             $request->query->getInt('limit', 10)
         );

@@ -98,4 +98,12 @@ class RecipeRepository extends ServiceEntityRepository implements RepositoryInte
                 ->getQuery()
                 ->getResult();
     }
+
+    public function findRecipeByOrder() : ?array
+    {
+        return $this->createQueryBuilder('r')
+                ->orderBy('r.id', 'DESC')
+                ->getQuery()
+                ->getResult();
+    }
 }
