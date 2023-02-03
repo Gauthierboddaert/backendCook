@@ -3,10 +3,13 @@
 namespace App\Service;
 
 use App\Entity\Category;
+use App\Entity\Favoris;
+use App\Entity\Like;
 use App\Entity\Recipe;
 use App\Entity\User;
 use App\Repository\RecipeRepository;
 use App\Repository\RepositoryInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Form\FormInterface;
@@ -22,6 +25,7 @@ class RecipeManager implements RecipeManagerInterface
     private string $image_directory;
     private PaginatorInterface $paginator;
     private RepositoryInterface $repository;
+    private EntityManagerInterface $entityManager;
 
     public function __construct
     (
@@ -30,7 +34,9 @@ class RecipeManager implements RecipeManagerInterface
         ImageManagerInterface $imageManager,
         PaginatorInterface $paginator,
         RepositoryInterface $repository,
-        string $image_directory
+        EntityManagerInterface $entityManager,
+        string $image_directory,
+
     )
     {
         $this->router = $router;
@@ -39,6 +45,7 @@ class RecipeManager implements RecipeManagerInterface
         $this->image_directory = $image_directory;
         $this->paginator = $paginator;
         $this->repository = $repository;
+        $this->entityManager = $entityManager;
     }
 
     public function setNewCategory(Category $category , Recipe $recette) : void
@@ -49,14 +56,27 @@ class RecipeManager implements RecipeManagerInterface
 
     public function createNewRecipe(Recipe $recipe,User $user, FormInterface $form ) : bool
     {
+        $like = new Like();
+        $like->setUser($user);
+        $like->setIsLike(false);
+        $like->setRecette($recipe);
+
+        $favoris = new Favoris();
+        $favoris->setIsFavoris(false);
+        $favoris->addUser($user);
+        $favoris->addRecette($recipe);
+
         //set the user here like this I don't need to show it in the form
         $recipe->setUsers($user);
 
         //allow to move image in directory of project uploads/image_recipe
         $this->imageManager->downloadImage($form, $recipe,$this->recipeRepository);
 
-        $this->recipeRepository->save($recipe, true);
+        $this->entityManager->persist($recipe);
+        $this->entityManager->persist($like);
+        $this->entityManager->persist($favoris);
 
+        $this->entityManager->flush();
 
         return true;
     }

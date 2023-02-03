@@ -96,7 +96,7 @@ class RecipeRepository extends ServiceEntityRepository implements RepositoryInte
                 ->getResult();
     }
 
-    public function findLikesByUser(User $user) : ?array
+    public function findRecipeByUser(User $user) : ?array
     {
         return $this->createQueryBuilder('r')
                     ->addCriteria(self::createRecipeByUser($user))
@@ -109,6 +109,26 @@ class RecipeRepository extends ServiceEntityRepository implements RepositoryInte
     {
         return Criteria::create()->andWhere(
             Criteria::expr()->eq('r.users', $user)
+        );
+    }
+
+    public function findLikesByUser(User $user) : ?array
+    {
+        return $this->createQueryBuilder('r')
+            ->innerJoin('r.likes', 'l')
+            ->addCriteria(self::createLikeByUser($user))
+            ->orderBy('r.id', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public static function createLikeByUser(User $user) : Criteria
+    {
+        return Criteria::create()->andWhere(
+            Criteria::expr()->andX(
+                Criteria::expr()->eq('l.user', $user->getId()),
+                Criteria::expr()->eq('l.isLike', true)
+            )
         );
     }
 }

@@ -4,7 +4,6 @@ namespace App\Service;
 
 use App\Entity\Ingredient;
 use Doctrine\ORM\EntityManagerInterface;
-use function PHPUnit\Framework\isEmpty;
 
 class IngredientManager
 {
@@ -36,12 +35,5 @@ class IngredientManager
         $this->entityManager->flush();
 
         return true;
-    }
-
-    private function checkdata($value)
-    {
-        $str = trim($value, "< ");
-        $float = floatval(str_replace(",", ".", $str));
-        return $float;
     }
 }

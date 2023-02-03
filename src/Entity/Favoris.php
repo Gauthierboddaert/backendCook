@@ -21,6 +21,9 @@ class Favoris
     #[ORM\ManyToMany(targetEntity: user::class, inversedBy: 'favoris')]
     private Collection $user;
 
+    #[ORM\Column]
+    private ?bool $isFavoris = null;
+
     public function __construct()
     {
         $this->recette = new ArrayCollection();
@@ -76,6 +79,18 @@ class Favoris
     public function removeUser(user $user): self
     {
         $this->user->removeElement($user);
+
+        return $this;
+    }
+
+    public function isIsFavoris(): ?bool
+    {
+        return $this->isFavoris;
+    }
+
+    public function setIsFavoris(bool $isFavoris): self
+    {
+        $this->isFavoris = $isFavoris;
 
         return $this;
     }

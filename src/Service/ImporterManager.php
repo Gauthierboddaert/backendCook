@@ -56,7 +56,6 @@ class ImporterManager extends Importer
 
             if($i == $maxRequest)
             {
-                dd($proteines, count($proteines));
                 sleep(60);
                 $maxRequest += 40;
             }
@@ -67,7 +66,6 @@ class ImporterManager extends Importer
             }catch(\Exception $exception)
             {
                 $proteines [] = $exception->getMessage();
-                //dd($data, $exception->getMessage());
             }
 
 

@@ -42,6 +42,48 @@ class UserController extends AbstractController
 
         return $this->render('user/index.html.twig', [
             'user' => $this->getUser(),
+            'recettes' => $this->recipeManager->paginatorForTenRecipe($request, $this->recipeRepository->findRecipeByUser($this->getUser())),
+            'age' => $this->userManager->getAge($this->getUser())
+        ]);
+    }
+
+    #[Route('/profil/likes', name: 'app_user_like')]
+    public function profilLikes(AuthenticationUtils $authenticationUtils, Request $request): Response
+    {
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        if(null == $this->getUser())
+        {
+            return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+
+        }
+
+        return $this->render('user/profilLikes.html.twig', [
+            'user' => $this->getUser(),
+            'recettes' => $this->recipeManager->paginatorForTenRecipe($request, $this->recipeRepository->findLikesByUser($this->getUser())),
+            'age' => $this->userManager->getAge($this->getUser())
+        ]);
+    }
+
+    #[Route('/profil/favories', name: 'app_user_favories')]
+    public function profilFavories(AuthenticationUtils $authenticationUtils, Request $request): Response
+    {
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        if(null == $this->getUser())
+        {
+            return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+
+        }
+
+        return $this->render('user/profileFavories.html.twig', [
+            'user' => $this->getUser(),
             'recettes' => $this->recipeManager->paginatorForTenRecipe($request, $this->recipeRepository->findLikesByUser($this->getUser())),
             'age' => $this->userManager->getAge($this->getUser())
         ]);
