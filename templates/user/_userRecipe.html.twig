@@ -3,7 +3,13 @@
         {% for recette in recettes %}
             <div class="recipe">
                 <div style="background:url({{ asset('/uploads/' ~ recette.image ) }}) center / cover no-repeat;" class="recipeImg">
-                    <i class="fa-solid fa-heart" data-recipe-id="{{ recette.id }}"></i>
+                    {% if recette.likes|length > 0 %}
+                        {% set firstLike = recette.likes.first %}
+                        <i class="fa-solid fa-heart {% if firstLike.isLike %}liked{% else %}not-liked{% endif %}"  data-recipe-id="{{ recette.id }}"></i>
+                    {% else %}
+                        <i class="fa-solid fa-heart not-liked" data-recipe-id="{{ recette.id }}"></i>
+                    {% endif %}
+                    {# <i class="fa-solid fa-heart {% if recette.likes.first.isLike %}liked{% else %}not-liked{% endif %}"  data-recipe-id="{{ recette.id }}"></i>  #}
                 </div>
                 <div class="recipeInfos">
                     <p>{{ recette.name }}</p>
@@ -61,9 +67,16 @@
         }
 
         .recipeImg i{
-            color: red;
             display: none;
             font-size: 30px;
+        }
+
+        .liked{
+            color: red;
+        }
+
+        .not-liked{
+            color: white;
         }
 
         .typeOfRecipeByUser{
@@ -76,6 +89,19 @@
             margin: 0 auto;
             justify-content: center;
             align-items: center;
+        }
+
+        .fa-solid.fa-heart.clicked {
+            animation: pulse 0.090s ease-in-out;
+        }
+
+        @keyframes pulse {
+            from {
+                transform: scale(1);
+            }
+            to {
+                transform: scale(1.5);
+            }
         }
     </style>
 {% endblock %}

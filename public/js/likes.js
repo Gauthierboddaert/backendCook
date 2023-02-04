@@ -3,13 +3,18 @@ $(document).ready(function () {
     $('i').click(function () {
         let publicationId = $(this).find('i');
         const recipeId = this.dataset.recipeId;
-        console.log(recipeId);
+        $(this).addClass('clicked');
+        if ($(this).hasClass('liked')) {
+            $(this).removeClass('liked').addClass('not-liked');
+        } else {
+            $(this).removeClass('not-liked').addClass('liked');
+        }
 
         $.ajax({
             url: 'https://127.0.0.1:8000/api/likes/recipes/' + recipeId,
             type: 'post',
             success: function (data) {
-                // Code pour gérer la réponse de la requête AJAX
+
             }
         });
     });
@@ -18,5 +23,6 @@ $(document).ready(function () {
         $(this).find('i').css('display', 'flex');
     }, function() {
         $(this).find('i').css('display', 'none');
+        $(this).find('.fa-solid.fa-heart').removeClass('clicked');
     });
 });
