@@ -12,7 +12,13 @@
     {% for recette in recettes %}
         <section class="containerRecipe">
             <div class="recipe">
-                <div style="background-image: url({{ asset('/uploads/' ~ recette.image ) }});" class="recipeLeftPart">
+                <div style="background-image: url({{ asset('/uploads/' ~ recette.image ) }});" class="recipeLeftPart recipeImg">
+                    {% if recette.likes|length > 0 %}
+                        {% set firstLike = recette.likes.first %}
+                        <i class="fa-solid fa-heart {% if firstLike.isLike %}liked{% else %}not-liked{% endif %}"  data-recipe-id="{{ recette.id }}"></i>
+                    {% else %}
+                        <i class="fa-solid fa-heart not-liked" data-recipe-id="{{ recette.id }}"></i>
+                    {% endif %}
                     {# <img src="{{ asset('/uploads/' ~ recette.image )  }}" alt="mon image"> #}
                 </div>
                 <div class="recipeRightPart">
@@ -40,7 +46,31 @@
 </main>
 
     <style>
+        .fa-solid.fa-heart.clicked {
+            animation: pulse 0.090s ease-in-out;
+        }
 
+        @keyframes pulse {
+            from {
+                transform: scale(1);
+            }
+            to {
+                transform: scale(1.5);
+            }
+        }
+
+        .recipeImg i{
+            display: none;
+            font-size: 30px;
+        }
+
+        .liked{
+            color: red;
+        }
+
+        .not-liked{
+            color: black;
+        }
         .buttonCRUD{
             width: 100%;
             display: flex;
@@ -54,6 +84,8 @@
             display: flex;
             width: 35%;
             height: 100%;
+            justify-content: center;
+            align-items: center;
             background: white;
             border-right: solid 1px black;
             background-size: cover;
