@@ -46,10 +46,10 @@ class Recipe
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?image $image = null;
 
-    #[ORM\OneToMany(mappedBy: 'recette', targetEntity: Like::class)]
+    #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: Like::class)]
     private Collection $likes;
 
-    #[ORM\ManyToMany(targetEntity: Ingredient::class, mappedBy: 'recette')]
+    #[ORM\ManyToMany(targetEntity: Ingredient::class, mappedBy: 'recipe')]
     private Collection $ingredients;
 
     #[ORM\Column]
@@ -194,7 +194,7 @@ class Recipe
     {
         if (!$this->likes->contains($like)) {
             $this->likes->add($like);
-            $like->setRecette($this);
+            $like->setRecipe($this);
         }
 
         return $this;
@@ -204,8 +204,8 @@ class Recipe
     {
         if ($this->likes->removeElement($like)) {
             // set the owning side to null (unless already changed)
-            if ($like->getRecette() === $this) {
-                $like->setRecette(null);
+            if ($like->getRecipe() === $this) {
+                $like->setRecipe(null);
             }
         }
 

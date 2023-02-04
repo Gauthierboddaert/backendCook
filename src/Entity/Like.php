@@ -25,7 +25,7 @@ class Like
     private ?user $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'likes')]
-    private ?Recipe $recette = null;
+    private ?Recipe $recipe = null;
 
     public function getId(): ?int
     {
@@ -56,14 +56,14 @@ class Like
         return $this;
     }
 
-    public function getRecette(): ?Recipe
+    public function getRecipe(): ?Recipe
     {
-        return $this->recette;
+        return $this->recipe;
     }
 
-    public function setRecette(?Recipe $recette): self
+    public function setRecipe(?Recipe $recipe): self
     {
-        $this->recette = $recette;
+        $this->recipe = $recipe;
 
         return $this;
     }
