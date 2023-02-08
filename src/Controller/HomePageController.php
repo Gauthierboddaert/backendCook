@@ -71,7 +71,6 @@ class HomePageController extends BaseController
     #[Route('/recette/new', name: 'app_home_page_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
-
         $user = $this->getUser();
         $recipe = new Recipe();
         $form = $this->createForm(RecipeType::class, $recipe);
@@ -90,38 +89,40 @@ class HomePageController extends BaseController
     }
 
     #[Route('/recette/{id}', name: 'app_home_page_show', methods: ['GET'])]
-    public function show(Recipe $recette): Response
+    public function show(Recipe $recipe): Response
     {
         return $this->render('recette/show.html.twig', [
-            'recette' => $recette,
+            'recette' => $recipe,
         ]);
     }
 
     #[Route('/recette/{id}/edit', name: 'app_home_page_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Recipe $recette): Response
+    public function edit(Request $request, Recipe $recipe): Response
     {
-        $form = $this->createForm(RecipeType::class, $recette);
-        $form->handleRequest($request);
+//        dd($recipe);
 
+        $form = $this->createForm(RecipeType::class, $recipe);
+        $form->handleRequest($request);
+//
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $this->recipeRepository->save($recette, true);
+            $this->recipeRepository->save($recipe, true);
             //move the image
-            $this->imageInterface->downloadImage($form, $recette,$this->recipeRepository,$this->image_directory);
+            $this->imageInterface->downloadImage($form, $recipe,$this->recipeRepository,$this->image_directory);
             return $this->redirectToRoute('app_home_page_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('recette/edit.html.twig', [
-            'recette' => $recette,
+            'recette' => $recipe,
             'form' => $form,
         ]);
     }
 
     #[Route('/recette/{id}', name: 'app_home_page_delete', methods: ['POST'])]
-    public function delete(Request $request, Recipe $recette): Response
+    public function delete(Request $request, Recipe $recipe): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$recette->getId(), $request->request->get('_token'))) {
-            $this->recipeRepository->remove($recette, true);
+        if ($this->isCsrfTokenValid('delete'.$recipe->getId(), $request->request->get('_token'))) {
+            $this->recipeRepository->remove($recipe, true);
         }
 
         return $this->redirectToRoute('app_home_page_index', [], Response::HTTP_SEE_OTHER);

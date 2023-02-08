@@ -49,7 +49,7 @@ class Recipe
     #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: Like::class)]
     private Collection $likes;
 
-    #[ORM\ManyToMany(targetEntity: Ingredient::class, mappedBy: 'recipe')]
+    #[ORM\ManyToMany(targetEntity: Ingredient::class, mappedBy: 'recette')]
     private Collection $ingredients;
 
     #[ORM\Column]

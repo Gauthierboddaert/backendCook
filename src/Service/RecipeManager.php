@@ -59,7 +59,7 @@ class RecipeManager implements RecipeManagerInterface
         $like = new Like();
         $like->setUser($user);
         $like->setIsLike(false);
-        $like->setRecette($recipe);
+        $like->setRecipe($recipe);
 
         $favoris = new Favoris();
         $favoris->setIsFavoris(false);

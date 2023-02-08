@@ -3,8 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="581ee74d-4c6c-44fd-b614-95b4990ce11d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home_page/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home_page/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/recette/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/recette/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/likes.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/likes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/HomePageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomePageController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Recipe.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Recipe.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/RecipeType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/RecipeType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/RecipeManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/RecipeManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/recette/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/recette/edit.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -286,6 +290,7 @@
       <workItem from="1675248782635" duration="13782000" />
       <workItem from="1675335281932" duration="9542000" />
       <workItem from="1675457740249" duration="9216000" />
+      <workItem from="1675859804176" duration="1571000" />
     </task>
     <servers />
   </component>

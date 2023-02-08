@@ -14,7 +14,7 @@ $(document).ready(function () {
             url: 'https://127.0.0.1:8000/api/likes/recipes/' + recipeId,
             type: 'post',
             success: function (data) {
-
+                console.log(data);
             }
         });
     });
