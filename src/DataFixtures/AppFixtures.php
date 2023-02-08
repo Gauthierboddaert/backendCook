@@ -63,7 +63,7 @@ class AppFixtures extends Fixture
             $recipeStep2->setRecipe($recipe);
             $recipe->addRecipeStep($recipeStep);
             $recipe->addRecipeStep($recipeStep2);
-            $like->setRecette($recipe);
+            $like->setRecipe($recipe);
             $like->setUser($user);
             $recipe->addLike($like);
             $ingredient->setName('tomate'.$i);
