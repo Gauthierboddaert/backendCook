@@ -32,7 +32,7 @@ class  LikesController extends AbstractController
     public function index(int $id): JsonResponse
     {
         $user = $this->getUser();
-        dd($user);
+
         if($this->likeInterface->LikeRecipe($id, $user)){
             return new JsonResponse('like updated',Response::HTTP_OK);
         }

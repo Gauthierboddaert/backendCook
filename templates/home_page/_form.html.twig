@@ -10,7 +10,7 @@
                                 <button class="recette">{{ button_label|default('Rechercher') }}</button>
                                 <button type="button" class="recette filtre filterOpen">Filtre avancés</button>
                         </div>
-                    {{ form_end(form) }}
+
                 </div>
         </div>
 </section>
@@ -20,7 +20,7 @@
                 <i id="close" class="fa-solid fa-xmark closefitlreRecipe"></i>
         </div>
 </div>
-
+{{ form_end(form) }}
 <style>
         .search{
                 width: 80%;

@@ -2,24 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="581ee74d-4c6c-44fd-b614-95b4990ce11d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/backendCookAPI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/backendCookAPI.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.override.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/likes.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/likes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Command/ExportIngredientsFromCSV.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Command/ExportIngredientsFromCSV.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/api/LikesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/api/LikesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/RecipeType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/RecipeType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/LikeManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/LikeManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/LikeManagerInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/LikeManagerInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home_page/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home_page/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/recette/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/recette/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/SearchType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/SearchType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Security/LoginAuthenticator.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -310,7 +298,8 @@
       <workItem from="1677855511118" duration="421000" />
       <workItem from="1677855941836" duration="2299000" />
       <workItem from="1677859436316" duration="2007000" />
-      <workItem from="1677945470916" duration="696000" />
+      <workItem from="1677945470916" duration="1027000" />
+      <workItem from="1677958191016" duration="725000" />
     </task>
     <servers />
   </component>
@@ -333,7 +322,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/src/Command/ExportIngredientsFromCSV.php</url>
-          <line>16</line>
+          <line>17</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

@@ -15,12 +15,6 @@ security:
             security: false
             pattern: ^/token$
 
-        api:
-            security: true
-            stateless: true
-            oauth2: true
-
-
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
@@ -30,6 +24,11 @@ security:
             custom_authenticator: App\Security\AuthenticatorLoginAuthenticator
             logout:
                 path: app_logout
+
+        api:
+            security: true
+            stateless: true
+            oauth2: true
                 # where to redirect after logout
                 # target: app_any_route
             # activate different ways to authenticate

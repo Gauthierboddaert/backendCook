@@ -10,6 +10,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+
 #[AsCommand(name: 'app:import-ingredients')]
 class ExportIngredientsFromCSV extends Command
 {
@@ -25,7 +26,7 @@ class ExportIngredientsFromCSV extends Command
     }
 
     // the command description shown when running "php bin/console list"
-    protected static $defaultDescription = 'Import ingredients from XLSX file';
+    protected static $defaultDescription = 'Import ingredients from XLSX file. The value who is insert into database is for 100g of ingredient';
 
     // ...
     protected function configure(): void
