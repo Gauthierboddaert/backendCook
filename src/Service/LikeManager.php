@@ -31,17 +31,16 @@ class LikeManager implements LikeManagerInterface
         $this->likeRepository = $likeRepository;
         $this->userRepository = $userRepository;
     }
-    public function LikeRecipe(int $id) : bool
+    public function LikeRecipe(int $id, User $user) : bool
     {
         $recipe = $this->recipeRepositoryInterface->findOneBy([
             'id' => $id,
-            'users' => 5
+            'users' => 1
             //'users' => $user
         ]);
-
         if(null !== $recipe)
         {
-            $this->createLikeInRecipeForUser($recipe, 5);
+            $this->createLikeInRecipeForUser($recipe, 1);
             $like = $recipe->getLikes()->first();
             $like->isIsLike() ? $like->setIsLike(false) : $like->setIsLike(true);
             $this->likeRepositoryInterface->save($like, true);

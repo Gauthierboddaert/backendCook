@@ -11,10 +11,13 @@ $(document).ready(function () {
         }
 
         $.ajax({
-            url: 'https://127.0.0.1:8000/api/likes/recipes/' + recipeId,
+            url: 'http://127.0.0.1:8000/api/likes/recipes/' + recipeId,
             type: 'post',
             success: function (data) {
-                console.log(data);
+                console.log(data)
+            },
+            error: function (xhr, status, error) {
+                console.log(xhr.responseText);
             }
         });
     });

@@ -31,7 +31,9 @@ class  LikesController extends AbstractController
     #[Route('/api/likes/recipes/{id}',name: 'app_likes',methods: ['POST'])]
     public function index(int $id): JsonResponse
     {
-        if($this->likeInterface->LikeRecipe($id)){
+        $user = $this->getUser();
+        dd($user);
+        if($this->likeInterface->LikeRecipe($id, $user)){
             return new JsonResponse('like updated',Response::HTTP_OK);
         }
 

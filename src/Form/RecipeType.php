@@ -53,43 +53,43 @@ class RecipeType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => false,
-//                'query_builder' => function (IngredientRepository $ingredientRepository) {
-//                    return $ingredientRepository->createQueryBuilder('r')
-//                        ->orderBy('r.name', 'ASC');
-//                },
+                'query_builder' => function (IngredientRepository $ingredientRepository) {
+                    return $ingredientRepository->createQueryBuilder('r')
+                        ->orderBy('r.name', 'ASC');
+                },
                 'autocomplete' => true
             ])
-//            ->add('creationTime', ChoiceType::class, [
-//                'choices' => [
-//                    '5 minutes' => 5,
-//                    '10 minutes' => 10,
-//                    '20 minutes' => 20,
-//                    '30 minutes' => 30,
-//                    '1 heure' => 60,
-//                    '1 heure 30 minutes' => 90,
-//                    '2 heures' => 120
-//                ]
-//            ])
-//            ->add('numberOfPersons', ChoiceType::class, [
-//                'choices' => [
-//                    '1 personne' => 1,
-//                    '2 personnes' => 2,
-//                    '3 personnes' => 3,
-//                    '4 personnes' => 4,
-//                    '5 personnes' => 5,
-//                    '6 personnes' => 6,
-//                    '7 personnes' => 7,
-//                    '8 personnes' => 8,
-//                    '9 personnes' => 9,
-//                    '10 personnes' => 10
-//                ]
-//            ])
-//            ->add('recipeStep', CollectionType::class, [
-//                'entry_type' => RecipeStepValueType::class,
-//                'data' => $recipeStepsValues,
-//                'allow_add' => true,
-//                'allow_delete' => true,
-//            ])
+           ->add('creationTime', ChoiceType::class, [
+                'choices' => [
+                    '5 minutes' => 5,
+                    '10 minutes' => 10,
+                        '20 minutes' => 20,
+                        '30 minutes' => 30,
+                        '1 heure' => 60,
+                        '1 heure 30 minutes' => 90,
+                        '2 heures' => 120
+                    ]
+                ])
+                ->add('numberOfPersons', ChoiceType::class, [
+                    'choices' => [
+                        '1 personne' => 1,
+                        '2 personnes' => 2,
+                        '3 personnes' => 3,
+                        '4 personnes' => 4,
+                        '5 personnes' => 5,
+                        '6 personnes' => 6,
+                        '7 personnes' => 7,
+                        '8 personnes' => 8,
+                        '9 personnes' => 9,
+                        '10 personnes' => 10
+                    ]
+                ])
+                ->add('recipeStep', CollectionType::class, [
+                    'entry_type' => RecipeStepValueType::class,
+                    'data' => $recipeStepsValues,
+                    'allow_add' => true,
+                    'allow_delete' => true,
+                ])
         ;
     }
 

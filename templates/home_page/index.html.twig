@@ -13,11 +13,13 @@
         <section class="containerRecipe">
             <div class="recipe">
                 <div style="background-image: url({{ asset('/uploads/' ~ recette.image ) }});" class="recipeLeftPart recipeImg">
-                    {% if recette.likes|length > 0 %}
-                        {% set firstLike = recette.likes.first %}
-                        <i class="fa-solid fa-heart {% if firstLike.isLike %}liked{% else %}not-liked{% endif %}"  data-recipe-id="{{ recette.id }}"></i>
-                    {% else %}
-                        <i class="fa-solid fa-heart not-liked" data-recipe-id="{{ recette.id }}"></i>
+                    {% if app.user is not null %}
+                        {% if recette.likes|length > 0 %}
+                            {% set firstLike = recette.likes.first %}
+                            <i class="fa-solid fa-heart {% if firstLike.isLike %}liked{% else %}not-liked{% endif %}"  data-recipe-id="{{ recette.id }}"></i>
+                        {% else %}
+                            <i class="fa-solid fa-heart not-liked" data-recipe-id="{{ recette.id }}"></i>
+                        {% endif %}
                     {% endif %}
                     {# <img src="{{ asset('/uploads/' ~ recette.image )  }}" alt="mon image"> #}
                 </div>

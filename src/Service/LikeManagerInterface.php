@@ -9,5 +9,5 @@ use Symfony\Component\Form\FormInterface;
 
 interface LikeManagerInterface
 {
-    public function LikeRecipe(int $id) : bool;
+    public function LikeRecipe(int $id, User $user ) : bool;
 }
