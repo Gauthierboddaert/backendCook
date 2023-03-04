@@ -61,6 +61,15 @@ class Recipe
     #[ORM\Column]
     private ?int $numberOfPersons = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?float $Lipide = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $glucide = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $proteine = null;
+
 
     public function __toString(): string
     {
@@ -289,6 +298,42 @@ class Recipe
     public function setNumberOfPersons(int $numberOfPersons): self
     {
         $this->numberOfPersons = $numberOfPersons;
+
+        return $this;
+    }
+
+    public function getLipide(): ?float
+    {
+        return $this->Lipide;
+    }
+
+    public function setLipide(?float $Lipide): self
+    {
+        $this->Lipide = $Lipide;
+
+        return $this;
+    }
+
+    public function getGlucide(): ?float
+    {
+        return $this->glucide;
+    }
+
+    public function setGlucide(?float $glucide): self
+    {
+        $this->glucide = $glucide;
+
+        return $this;
+    }
+
+    public function getProteine(): ?float
+    {
+        return $this->proteine;
+    }
+
+    public function setProteine(?float $proteine): self
+    {
+        $this->proteine = $proteine;
 
         return $this;
     }
