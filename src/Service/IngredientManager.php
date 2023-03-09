@@ -3,14 +3,18 @@
 namespace App\Service;
 
 use App\Entity\Ingredient;
+use App\Entity\Recipe;
+use App\Repository\IngredientRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 class IngredientManager
 {
     private EntityManagerInterface $entityManager;
-    public function __construct(EntityManagerInterface $entityManager)
+    private IngredientRepository $ingredientRepository;
+    public function __construct(EntityManagerInterface $entityManager, IngredientRepository $ingredientRepository)
     {
         $this->entityManager = $entityManager;
+        $this->ingredientRepository = $ingredientRepository;
     }
 
     public function addIngredientsFromXlsx(array $data) : bool
@@ -35,5 +39,16 @@ class IngredientManager
         $this->entityManager->flush();
 
         return true;
+    }
+
+    public function addIngredientsInRecipe(Recipe $recipe, array $ingredients) : void
+    {
+        foreach ($ingredients as $ingredient)
+        {
+            if(null !== $value = $this->ingredientRepository->findOneBy(['name' => $ingredient]))
+            {
+                $recipe->addIngredient($value);
+            }
+        }
     }
 }

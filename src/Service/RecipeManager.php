@@ -7,8 +7,10 @@ use App\Entity\Favoris;
 use App\Entity\Like;
 use App\Entity\Recipe;
 use App\Entity\User;
+use App\Repository\CategoryRepository;
 use App\Repository\RecipeRepository;
 use App\Repository\RepositoryInterface;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
 use Knp\Component\Pager\PaginatorInterface;
@@ -18,34 +20,39 @@ use Symfony\Component\Routing\RouterInterface;
 
 class RecipeManager implements RecipeManagerInterface
 {
-
-    private RouterInterface $router;
     private RecipeRepository $recipeRepository;
+    private UserRepository $userRepository;
     private ImageManagerInterface $imageManager;
     private string $image_directory;
-    private PaginatorInterface $paginator;
     private RepositoryInterface $repository;
     private EntityManagerInterface $entityManager;
+    private IngredientManager $ingredientManager;
+    private CategoryManager $categoryManager;
+    private RecipeStepManager $recipeStepManager;
 
     public function __construct
     (
-        RouterInterface $router,
         RecipeRepository $recipeRepository,
         ImageManagerInterface $imageManager,
-        PaginatorInterface $paginator,
         RepositoryInterface $repository,
         EntityManagerInterface $entityManager,
+        UserRepository $userRepository,
+        IngredientManager $ingredientManager,
+        CategoryManager $categoryManager,
+        RecipeStepManager $recipeStepManager,
         string $image_directory,
 
     )
     {
-        $this->router = $router;
         $this->recipeRepository = $recipeRepository;
         $this->imageManager = $imageManager;
         $this->image_directory = $image_directory;
-        $this->paginator = $paginator;
         $this->repository = $repository;
         $this->entityManager = $entityManager;
+        $this->userRepository = $userRepository;
+        $this->ingredientManager = $ingredientManager;
+        $this->categoryManager = $categoryManager;
+        $this->recipeStepManager = $recipeStepManager;
     }
 
     public function setNewCategory(Category $category , Recipe $recette) : void
@@ -91,5 +98,21 @@ class RecipeManager implements RecipeManagerInterface
         );
     }
 
+    public function createRecipeFromRequest(array $request): void
+    {
+        $recipe = new Recipe();
+        $recipe->setName($request['name']);
+        $recipe->setDescriptions($request['description']);
+        //$recipe->setUsers($this->userRepository->findOneBy($this->>getUser())));
+        $recipe->setUsers($this->userRepository->findOneBy(['email' => $request['email']]));
+        $recipe->setNumberOfPersons($request['number_of_persons']);
+        $this->ingredientManager->addIngredientsInRecipe($recipe,$request['ingredients'] );
+        $this->categoryManager->addCategoryInRecipe($recipe, $request['categories']);
+        $this->recipeStepManager->addRecipeStepsInRecipe($recipe, $request['steps']);
+        $recipe->setCreatedAt(new \DateTime());
+        $recipe->setCreationTime(10);
+        $recipe->setUpdatedAt(new \DateTime());
+        $this->recipeRepository->save($recipe, true);
+    }
 
 }

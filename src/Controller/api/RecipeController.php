@@ -63,7 +63,7 @@ class RecipeController extends AbstractController
         $recipe = $this->recipeRepository->findOneBy(['id' => $id]);
 
         if(null === $recipe)
-            return new JsonResponse($this->serializer->serialize("Recipe doesn't exist",'json'),Response::HTTP_BAD_REQUEST, [], true);
+            return new JsonResponse($this->serializer->serialize("Recipe not found",'json'),Response::HTTP_INTERNAL_SERVER_ERROR, [], true);
 
         return new JsonResponse(
             $this->serializer->serialize($recipe,
@@ -78,7 +78,7 @@ class RecipeController extends AbstractController
     public function deleteRecette(int $id): JsonResponse
     {
         $recipe = $this->recipeRepository->findOneBy(['id' => $id]);
-//        dd($recipe);
+
         if(null === $recipe)
             return new JsonResponse($this->serializer->serialize("Recipe doesn't exist",'json'),Response::HTTP_BAD_REQUEST, [], true);
 
@@ -94,21 +94,24 @@ class RecipeController extends AbstractController
     #[Route('/recipe', name: 'app_post_recipe', methods: 'POST')]
     public function postRecette(Request $request): JsonResponse
     {
-         $request = $request->toArray();
-
-         $recipe = new Recipe();
-         $recipe->setName($request['name']);
-         $recipe->setDescriptions($request['description']);
-         $recipe->setUsers($this->userRepository->findOneBy(['email' => $request['email']]));
-         $recipe->addCategory($this->categoryRepository->findOneBy(['name' => $request['category']]));
-         $this->recipeRepository->save($recipe, true);
-
-         return new JsonResponse($this->serializer->serialize(
-             'You have add a new Recipe :) !'
-             ,'json',[]),
-             Response::HTTP_CREATED,
-             [],
-             true);
+        try {
+            $this->recipeManager->createRecipeFromRequest($request->toArray());
+            return new JsonResponse($this->serializer->serialize(
+                'You have add a new Recipe :) !'
+                ,'json',[]),
+                Response::HTTP_CREATED,
+                [],
+                true
+            );
+        }catch (\Exception $exception) {
+            return new JsonResponse($this->serializer->serialize(
+                $exception->getMessage()
+                ,'json',[]),
+                Response::HTTP_INTERNAL_SERVER_ERROR,
+                [],
+                true
+            );
+        }
     }
 
     #[Route('/recipe/{id}', name: 'app_update_recipe', methods: 'PUT')]

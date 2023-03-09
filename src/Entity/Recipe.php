@@ -47,7 +47,7 @@ class Recipe
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?image $image = null;
 
-    #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: Like::class)]
+    #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: Like::class, cascade: ['persist', 'remove'])]
     private Collection $likes;
 
     #[ORM\ManyToMany(targetEntity: Ingredient::class, mappedBy: 'recette')]
