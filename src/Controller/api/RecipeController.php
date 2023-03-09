@@ -19,37 +19,37 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 #[Route('/api')]
-class RecetteController extends AbstractController
+class RecipeController extends AbstractController
 {
-    private RecipeRepository $recetteRepository;
+    private RecipeRepository $recipeRepository;
     private EntityManagerInterface $entityManager;
     private SerializerInterface $serializer;
     private UserRepository $userRepository;
     private CategoryRepository $categoryRepository;
-    private RecipeManager $recetteManager;
+    private RecipeManager $recipeManager;
 
     public function __construct(
         CategoryRepository     $categoryRepository,
         UserRepository         $userRepository,
-        RecipeRepository       $recetteRepository,
+        RecipeRepository       $recipeRepository,
         SerializerInterface    $serializer,
         EntityManagerInterface $entityManager,
-        RecipeManager $recetteManager
+        RecipeManager $recipeManager
     )
     {
-        $this->recetteRepository = $recetteRepository;
+        $this->recipeRepository = $recipeRepository;
         $this->categoryRepository = $categoryRepository;
         $this->serializer = $serializer;
         $this->entityManager = $entityManager;
         $this->userRepository = $userRepository;
-        $this->recetteManager = $recetteManager;
+        $this->recipeManager = $recipeManager;
     }
 
-    #[Route('/recette', name: 'app_recette', methods: 'GET')]
+    #[Route('/recipe', name: 'app_recipe', methods: 'GET')]
     public function index(): JsonResponse
     {
         return new JsonResponse(
-            $this->serializer->serialize($this->recetteRepository->findAll(),
+            $this->serializer->serialize($this->recipeRepository->findAll(),
             'json', ["groups" => "getRecette"]),
             Response::HTTP_OK,
             [],
@@ -57,16 +57,16 @@ class RecetteController extends AbstractController
         );
     }
 
-    #[Route('/recette/{id}', name: 'app_one_recette', methods: 'GET')]
+    #[Route('/recipe/{id}', name: 'app_one_recipe', methods: 'GET')]
     public function findOneRecette(int $id): JsonResponse
     {
-        $recette = $this->recetteRepository->findOneBy(['id' => $id]);
+        $recipe = $this->recipeRepository->findOneBy(['id' => $id]);
 
-        if(null === $recette)
+        if(null === $recipe)
             return new JsonResponse($this->serializer->serialize("Recipe doesn't exist",'json'),Response::HTTP_BAD_REQUEST, [], true);
 
         return new JsonResponse(
-            $this->serializer->serialize($recette,
+            $this->serializer->serialize($recipe,
                 'json', ["groups" => "getRecette"]),
             Response::HTTP_OK,
             [],
@@ -74,15 +74,15 @@ class RecetteController extends AbstractController
         );
     }
 
-    #[Route('/recette/{id}', name: 'app_delete_recette', methods: 'DELETE')]
+    #[Route('/recipe/{id}', name: 'app_delete_recipe', methods: 'DELETE')]
     public function deleteRecette(int $id): JsonResponse
     {
-        $recette = $this->recetteRepository->findOneBy(['id' => $id]);
-//        dd($recette);
-        if(null === $recette)
+        $recipe = $this->recipeRepository->findOneBy(['id' => $id]);
+//        dd($recipe);
+        if(null === $recipe)
             return new JsonResponse($this->serializer->serialize("Recipe doesn't exist",'json'),Response::HTTP_BAD_REQUEST, [], true);
 
-        $this->recetteRepository->remove($recette);
+        $this->recipeRepository->remove($recipe);
         $this->entityManager->flush();
         return new JsonResponse(
             null,
@@ -91,17 +91,17 @@ class RecetteController extends AbstractController
 
     }
 
-    #[Route('/recette', name: 'app_post_recette', methods: 'POST')]
+    #[Route('/recipe', name: 'app_post_recipe', methods: 'POST')]
     public function postRecette(Request $request): JsonResponse
     {
          $request = $request->toArray();
 
-         $recette = new Recipe();
-         $recette->setName($request['name']);
-         $recette->setDescriptions($request['description']);
-         $recette->setUsers($this->userRepository->findOneBy(['email' => $request['email']]));
-         $recette->addCategory($this->categoryRepository->findOneBy(['name' => $request['category']]));
-         $this->recetteRepository->save($recette, true);
+         $recipe = new Recipe();
+         $recipe->setName($request['name']);
+         $recipe->setDescriptions($request['description']);
+         $recipe->setUsers($this->userRepository->findOneBy(['email' => $request['email']]));
+         $recipe->addCategory($this->categoryRepository->findOneBy(['name' => $request['category']]));
+         $this->recipeRepository->save($recipe, true);
 
          return new JsonResponse($this->serializer->serialize(
              'You have add a new Recipe :) !'
@@ -111,18 +111,18 @@ class RecetteController extends AbstractController
              true);
     }
 
-    #[Route('/recette/{id}', name: 'app_update_recette', methods: 'PUT')]
+    #[Route('/recipe/{id}', name: 'app_update_recipe', methods: 'PUT')]
     public function updateRecette(int $id, Request $request) : JsonResponse
     {
         $request = $request->toArray();
-        $recette = $this->recetteRepository->findOneBy(['id' => $id]);
+        $recipe = $this->recipeRepository->findOneBy(['id' => $id]);
         $category = $this->categoryRepository->findOneBy(['name' => $request['category']]);
 
-        ( !empty($request['name'])) ? $recette->setName($request['name']) : '' ;
-        (!empty($request['description'])) ? $recette->setDescriptions($request['description']) : '';
-        (!empty($request['category'])) ? $this->recetteManager->setNewCategory($category, $recette) : '';
+        ( !empty($request['name'])) ? $recipe->setName($request['name']) : '' ;
+        (!empty($request['description'])) ? $recipe->setDescriptions($request['description']) : '';
+        (!empty($request['category'])) ? $this->recipeManager->setNewCategory($category, $recipe) : '';
 
-        $this->recetteRepository->save($recette, true);
+        $this->recipeRepository->save($recipe, true);
 
         return new JsonResponse();
     }

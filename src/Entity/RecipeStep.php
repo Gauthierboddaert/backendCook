@@ -6,6 +6,7 @@ use App\Repository\RecipeStepRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: RecipeStepRepository::class)]
 class RecipeStep
@@ -16,9 +17,11 @@ class RecipeStep
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['getRecette'])]
     private ?string $Name = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['getRecette'])]
     private ?string $descriptions = null;
 
     #[ORM\ManyToMany(targetEntity: Image::class, inversedBy: 'recipeSteps')]

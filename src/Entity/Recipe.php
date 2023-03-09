@@ -22,6 +22,7 @@ class Recipe
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['getRecette'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
@@ -50,15 +51,18 @@ class Recipe
     private Collection $likes;
 
     #[ORM\ManyToMany(targetEntity: Ingredient::class, mappedBy: 'recette')]
+    #[Groups(['getRecette'])]
     private Collection $ingredients;
 
     #[ORM\Column]
     private ?int $creationTime = null;
 
     #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: RecipeStep::class,cascade: ['persist', 'remove'])]
+    #[Groups(['getRecette'])]
     private Collection $recipeStep;
 
     #[ORM\Column]
+    #[Groups(['getRecette'])]
     private ?int $numberOfPersons = null;
 
     #[ORM\Column(nullable: true)]
