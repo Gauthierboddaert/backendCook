@@ -5,7 +5,7 @@ namespace App\Service;
 use App\Entity\Recipe;
 use App\Repository\CategoryRepository;
 
-class CategoryManager
+class CategoryManager implements CategoryManagerInterface
 {
     private CategoryRepository $categoryRepository;
 

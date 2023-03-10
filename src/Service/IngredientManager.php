@@ -7,7 +7,7 @@ use App\Entity\Recipe;
 use App\Repository\IngredientRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
-class IngredientManager
+class IngredientManager implements IngredientManagerInterface
 {
     private EntityManagerInterface $entityManager;
     private IngredientRepository $ingredientRepository;

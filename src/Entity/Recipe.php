@@ -66,12 +66,15 @@ class Recipe
     private ?int $numberOfPersons = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['getRecette'])]
     private ?float $Lipide = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['getRecette'])]
     private ?float $glucide = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['getRecette'])]
     private ?float $proteine = null;
 
 

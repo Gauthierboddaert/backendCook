@@ -8,7 +8,9 @@ use App\Repository\CategoryRepository;
 use App\Repository\RecipeRepository;
 use App\Repository\UserRepository;
 use App\Service\RecipeManager;
+use App\Service\RecipeManagerInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use MongoDB\Driver\Exception\ExecutionTimeoutException;
 use PHPUnit\Util\Json;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -26,7 +28,7 @@ class RecipeController extends AbstractController
     private SerializerInterface $serializer;
     private UserRepository $userRepository;
     private CategoryRepository $categoryRepository;
-    private RecipeManager $recipeManager;
+    private RecipeManagerInterface $recipeManager;
 
     public function __construct(
         CategoryRepository     $categoryRepository,
@@ -34,7 +36,7 @@ class RecipeController extends AbstractController
         RecipeRepository       $recipeRepository,
         SerializerInterface    $serializer,
         EntityManagerInterface $entityManager,
-        RecipeManager $recipeManager
+        RecipeManagerInterface $recipeManager
     )
     {
         $this->recipeRepository = $recipeRepository;
@@ -58,7 +60,7 @@ class RecipeController extends AbstractController
     }
 
     #[Route('/recipe/{id}', name: 'app_one_recipe', methods: 'GET')]
-    public function findOneRecette(int $id): JsonResponse
+    public function findOneRecipe(int $id): JsonResponse
     {
         $recipe = $this->recipeRepository->findOneBy(['id' => $id]);
 
@@ -75,7 +77,7 @@ class RecipeController extends AbstractController
     }
 
     #[Route('/recipe/{id}', name: 'app_delete_recipe', methods: 'DELETE')]
-    public function deleteRecette(int $id): JsonResponse
+    public function deleteRecipe(int $id): JsonResponse
     {
         $recipe = $this->recipeRepository->findOneBy(['id' => $id]);
 
@@ -92,12 +94,12 @@ class RecipeController extends AbstractController
     }
 
     #[Route('/recipe', name: 'app_post_recipe', methods: 'POST')]
-    public function postRecette(Request $request): JsonResponse
+    public function postRecipe(Request $request): JsonResponse
     {
         try {
             $this->recipeManager->createRecipeFromRequest($request->toArray());
             return new JsonResponse($this->serializer->serialize(
-                'You have add a new Recipe :) !'
+                'You have add a new Recipe !'
                 ,'json',[]),
                 Response::HTTP_CREATED,
                 [],
@@ -115,18 +117,22 @@ class RecipeController extends AbstractController
     }
 
     #[Route('/recipe/{id}', name: 'app_update_recipe', methods: 'PUT')]
-    public function updateRecette(int $id, Request $request) : JsonResponse
+    public function putRecipe(int $id, Request $request) : JsonResponse
     {
-        $request = $request->toArray();
-        $recipe = $this->recipeRepository->findOneBy(['id' => $id]);
-        $category = $this->categoryRepository->findOneBy(['name' => $request['category']]);
-
-        ( !empty($request['name'])) ? $recipe->setName($request['name']) : '' ;
-        (!empty($request['description'])) ? $recipe->setDescriptions($request['description']) : '';
-        (!empty($request['category'])) ? $this->recipeManager->setNewCategory($category, $recipe) : '';
-
-        $this->recipeRepository->save($recipe, true);
-
+        try{
+            $recipe = $this->recipeManager->updateRecipe($request->toArray(), $id);
+            $this->recipeRepository->save($recipe, true);
+        }catch (\Exception $exception)
+        {
+            return new JsonResponse(
+                $this->serializer->serialize(
+                    $exception->getMessage(),
+                    'json'),
+                Response::HTTP_INTERNAL_SERVER_ERROR,
+                [],
+                true
+            );
+        }
         return new JsonResponse();
     }
 

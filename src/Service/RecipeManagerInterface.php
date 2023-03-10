@@ -11,4 +11,6 @@ use Symfony\Component\HttpFoundation\Request;
 interface RecipeManagerInterface
 {
     public function createNewRecipe(Recipe $recipe,User $user, FormInterface $form ) : bool;
+    public function createRecipeFromRequest(array $request): void;
+    public function updateRecipe(array $recipes, int $id): Recipe;
 }

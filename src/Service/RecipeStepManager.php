@@ -7,7 +7,7 @@ use App\Entity\RecipeStep;
 use App\Repository\RecipeStepRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
-class RecipeStepManager
+class RecipeStepManager implements RecipeStepManagerInterface
 {
     private RecipeStepRepository $recipeStepRepository;
 

@@ -3,11 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="581ee74d-4c6c-44fd-b614-95b4990ce11d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/api/RecipeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/api/RecipeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Recipe.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Recipe.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/CategoryManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/CategoryManager.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Service/IngredientManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/IngredientManager.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Service/RecipeManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/RecipeManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/RecipeManagerInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/RecipeManagerInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/RecipeStepManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/RecipeStepManager.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -301,6 +303,7 @@
       <workItem from="1677945470916" duration="1027000" />
       <workItem from="1677958191016" duration="2828000" />
       <workItem from="1678364893679" duration="792000" />
+      <workItem from="1678404501936" duration="2360000" />
     </task>
     <servers />
   </component>
