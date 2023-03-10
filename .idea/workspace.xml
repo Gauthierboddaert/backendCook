@@ -3,13 +3,33 @@
   <component name="ChangeListManager">
     <list default="true" id="581ee74d-4c6c-44fd-b614-95b4990ce11d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/api/RecipeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/api/RecipeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Recipe.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Recipe.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/CategoryManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/CategoryManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/IngredientManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/IngredientManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/BaseController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/FavorisController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/HomePageController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Security/AuthenticatorLoginAuthenticator.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Service/RecipeManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/RecipeManager.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Service/RecipeManagerInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/RecipeManagerInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/RecipeStepManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/RecipeStepManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/UserManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/UserManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Search/index.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/favoris/index.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home_page/_form.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home_page/index.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/likes/index.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/recette/_delete_form.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/recette/_formSearch.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/recette/edit.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/recette/index.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/recette/new.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/recette/show.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/_headerProfil.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/_userRecipe.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/index.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/profilLikes.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/profileFavories.html.twig" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -216,7 +236,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;//wsl$/Ubuntu-20.04/home/gauthier/workspace/backendCook&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/gauthierboddaert/Desktop/Projet/backend-cook-app&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;php.override.implement.member.chooser.php.doc&quot;: &quot;NONE&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
@@ -303,7 +323,10 @@
       <workItem from="1677945470916" duration="1027000" />
       <workItem from="1677958191016" duration="2828000" />
       <workItem from="1678364893679" duration="792000" />
-      <workItem from="1678404501936" duration="2360000" />
+      <workItem from="1678404501936" duration="3193000" />
+      <workItem from="1678439972824" duration="257000" />
+      <workItem from="1678440232221" duration="604000" />
+      <workItem from="1678473112180" duration="823000" />
     </task>
     <servers />
   </component>
