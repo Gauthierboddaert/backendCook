@@ -29,4 +29,6 @@ RUN docker-php-ext-install -j$(nproc) intl pdo mysqli pdo_mysql
 RUN docker-php-ext-install sysvsem
 RUN docker-php-ext-enable pdo_mysql
 
+RUN apk add --no-cache yarn
+
 WORKDIR /app/
